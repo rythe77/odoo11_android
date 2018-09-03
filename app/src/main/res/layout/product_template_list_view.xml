@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/product_list_header_container"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/headerBackground"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/product_name_header"
+                android:textStyle="bold"
+                android:paddingLeft="@dimen/outside_margin"
+                android:paddingTop="@dimen/inside_margin"
+                android:paddingRight="@dimen/inside_margin"
+                android:paddingBottom="@dimen/inside_margin"
+                android:textColor="@color/body_text_1_inverse"
+                />
+
+            <TextView
+                android:layout_width="@dimen/qty_margin"
+                android:layout_height="wrap_content"
+                android:text="@string/qty_header"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:paddingTop="@dimen/inside_margin"
+                android:paddingRight="@dimen/inside_margin"
+                android:paddingBottom="@dimen/inside_margin"
+                android:textColor="@color/body_text_1_inverse"
+                />
+
+            <TextView
+                android:layout_width="@dimen/virtual_available_margin"
+                android:layout_height="wrap_content"
+                android:text="@string/virtual_available_header"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:paddingTop="@dimen/inside_margin"
+                android:paddingRight="@dimen/inside_margin"
+                android:paddingBottom="@dimen/inside_margin"
+                android:textColor="@color/body_text_1_inverse"
+                />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/input_search_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:shadowColor="@color/searchBackground"
+                android:inputType="text"
+                android:imeOptions="actionDone"
+                android:visibility="gone"/>
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/swiperefresh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/input_search_text">
+
+                <ListView
+                    android:id="@+id/list"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/theme_primary_background"
+                    android:dividerHeight="1px"/>
+
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+
+            <!-- Empty view is only visible when the list has no items. -->
+            <TextView
+                android:id="@+id/empty_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textAppearance="?android:textAppearanceMedium"/>
+
+            <ProgressBar
+                android:id="@+id/loading_spinner"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

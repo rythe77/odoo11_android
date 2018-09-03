@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/fetch_product_pricelist"
+        android:icon="@drawable/ic_download"
+        android:title="@string/fetch_product_pricelist_string"
+        android:visible="true"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/show_search_input_text"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search_string"
+        android:visible="true"
+        app:showAsAction="always"/>
+</menu>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#AD0000</color>
+    <color name="colorPrimaryDark">#660000</color>
+    <color name="colorAccent">#00adad</color>
+    <color name="theme_primary_background">#fff9f5</color>
+    <color name="theme_primary_dark_background">#fff6f0</color>
+    <color name="offlineColorPrimary">#323232</color>
+    <color name="offlineColorPrimaryDark">#545454</color>
+    <!-- Text color for app -->
+    <color name="text_primary">#de000000</color>
+    <color name="text_secondary">#8a000000</color>
+    <color name="text_secondary_light">#60000000</color>
+    <color name="text_inverse">#deffffff</color>
+    <color name="text_accent">#FF5722</color>
+    <!-- Background color for app -->
+    <color name="headerBackground">#D68080</color>
+    <color name="searchBackground">#D68080</color>
+    <color name="listviewBackground">#fafafa</color>
+    <color name="itemBackground">#fafafa</color>
+    <color name="itemDetailBackground">#fafafa</color>
+    <color name="base_chatter_view_background">#f3f3f3</color>
+    <color name="base_chatter_view_note_background">#dadada</color>
+    <color name="base_document_background">#eee9e9</color>
+    <color name="base_button_default_background">#8b8989</color>
+    <color name="divider">#BDBDBD</color>
+    <!-- Stock picking status color set -->
+    <color name="state_draft">#0099CC</color>
+    <color name="state_waiting">#AA66CC</color>
+    <color name="state_confirmed">#FF4444</color>
+    <color name="state_partially_available">#CC0000</color>
+    <color name="state_assigned">#FFBB33</color>
+    <color name="state_waiting_validation">#99CC00</color>
+    <color name="state_done">#808080</color>
+    <!-- Additional status color for stock move -->
+    <color name="state_cancel">#808080</color>
+</resources>

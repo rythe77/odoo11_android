@@ -1,0 +1,28 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="default_16dp">16dp</dimen>
+    <dimen name="default_8dp">8dp</dimen>
+    <dimen name="default_4dp">4dp</dimen>
+
+    <dimen name="app_bar_top_padding">0dp</dimen>
+    <dimen name="login_icon">35dp</dimen>
+
+    <!-- General margin -->
+    <dimen name="outside_margin">16dp</dimen>
+    <dimen name="inside_margin">8dp</dimen>
+    <dimen name="item_margin">50dp</dimen>
+    <!-- Product view width for each column -->
+    <dimen name="qty_margin">58dp</dimen>
+    <dimen name="virtual_available_margin">58dp</dimen>
+    <dimen name="min_qty_margin">12dp</dimen>
+    <dimen name="fixed_price_margin">108dp</dimen>
+
+    <!-- Sale order draft width for each column -->
+    <dimen name="total_amount_margin">150dp</dimen>
+</resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="@string/sale_string">
+        <menu>
+            <item
+                android:id="@+id/nav_product_offline"
+                android:icon="@drawable/ic_dollar"
+                android:title="@string/product_string_offline" />
+        </menu>
+    </item>
+
+    <item android:title="@string/other_string">
+        <menu>
+            <item
+                android:id="@+id/nav_online_mode"
+                android:icon="@drawable/ic_online"
+                android:title="@string/online_mode_string" />
+            <item
+                android:id="@+id/nav_login"
+                android:icon="@drawable/ic_logout"
+                android:title="@string/logout_string" />
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/inside_margin"
+    android:paddingBottom="@dimen/inside_margin"
+    android:background="@color/theme_primary_background"
+    >
+
+    <LinearLayout
+        android:id="@+id/product_row_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/default_4dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:maxLines="1"
+            >
+
+            <TextView
+                android:id="@+id/date_text_view"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:fontFamily="@string/font_normal"
+                android:textSize="@dimen/text_size_small"
+                android:textColor="@color/body_text_3"
+                tools:text="May 16, 2016" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="bottom"
+                android:textSize="@dimen/text_size_small"
+                android:textColor="@color/body_text_2"
+                android:text="@string/detail_product_pricelist_min_string"
+                tools:text="Pembelian Min." />
+
+            <TextView
+                android:id="@+id/min_qty"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:gravity="bottom"
+                android:maxLines="1"
+                android:textColor="@color/body_text_1"
+                android:textSize="@dimen/text_size_small"
+                tools:text="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:maxLines="1"
+            >
+
+            <TextView
+                android:id="@+id/pricelist_name"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:fontFamily="@string/font_normal"
+                android:maxLines="1"
+                android:textColor="@color/body_text_1"
+                android:textSize="@dimen/text_size_medium"
+                tools:text="Harga Ecer" />
+
+            <TextView
+                android:id="@+id/fixed_price"
+                android:layout_width="@dimen/fixed_price_margin"
+                android:layout_height="match_parent"
+                android:gravity="end"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/body_text_1"
+                android:textSize="@dimen/text_size_medium"
+                tools:text="Rp 30.000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:paddingRight="@dimen/inside_margin"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="@dimen/text_size_small"
+                android:textColor="@color/body_text_2"
+                android:text="@string/detail_product_pricelist_notes_string"
+                tools:text="Keterangan" />
+
+            <TextView
+                android:id="@+id/notes"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/inside_margin"
+                android:layout_gravity="end"
+                android:textColor="@color/body_text_2"
+                android:textSize="@dimen/text_size_small"
+                tools:text="1" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layerType="software"
+        android:background="@drawable/line_section_separator" />
+</LinearLayout>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Fonts -->
+    <string name="font_normal" translatable="false">sans-serif</string>
+    <string name="font_light" translatable="false">sans-serif-light</string>
+    <string name="font_condensed" translatable="false">sans-serif-condensed</string>
+
+    <!-- Text colors -->
+    <color name="body_text_1">@color/text_primary</color>
+    <color name="body_text_2">@color/text_secondary</color>
+    <color name="body_text_3">@color/text_secondary_light</color>
+    <color name="body_text_1_inverse">@color/text_inverse</color>
+    <color name="body_text_accent">@color/text_accent</color>
+
+    <!-- Text Sizes -->
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_medium">14sp</dimen>
+    <dimen name="text_size_xmedium">16sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_xlarge">20sp</dimen>
+    <dimen name="text_size_xxlarge">25sp</dimen>
+
+    <!-- General -->
+    <string name="app_name">Toserba 23</string>
+    <string name="action_settings">Settings</string>
+    <string name="settings_shared_preferences_label">My Preferences</string>
+    <string name="settings_url_label">URL</string>
+    <string name="settings_url_key" translatable="false">url</string>
+    <string name="settings_account_name_label">Account Name</string>
+    <string name="settings_account_name_key" translatable="false">account_name</string>
+    <string name="settings_password_label">Password</string>
+    <string name="settings_password_key" translatable="false">password</string>
+    <string name="settings_database_name_label">Database Name</string>
+    <string name="settings_database_name__key" translatable="false">database_name</string>
+    <string name="settings_is_login_key" translatable="false">is_logged_in</string>
+    <string name="settings_user_id_key" translatable="false">user_id</string>
+    <string name="cancel_string">Cancel</string>
+    <string name="confirm_string">Confirm</string>
+    <string name="yes_string">Yes</string>
+    <string name="no_string">No</string>
+    <string name="ok_string">OK</string>
+    <string name="search_string">Search</string>
+    <string name="logout_confirm">Are you sure you want to logout?</string>
+
+    <!-- Drawer Menu -->
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="sale_string">Sales</string>
+    <string name="product_string_online">Product-Pricelist</string>
+    <string name="qr_scanner_menu">QR Scanner</string>
+    <string name="stock_string">Inventory</string>
+    <string name="other_string">Others</string>
+    <string name="offline_mode_string">To Offline Mode</string>
+    <string name="logout_string">Logout</string>
+    <string name="product_string_offline">Product-Pricelist(Offline)</string>
+    <string name="online_mode_string">To Online Mode</string>
+
+    <!-- Login activity -->
+    <string name="login_activity">Login to your account</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in_short">Login</string>
+    <string name="action_sign_in">Login</string>
+    <string name="label_select_database">Select Database</string>
+    <string name="label_accept_login">Accept &amp; Login</string>
+    <string name="label_your_self_hosted_url">Your self-hosted URL</string>
+    <string name="label_username_or_email">Username or email</string>
+    <string name="label_password">Password</string>
+    <string name="label_to_offline_mode">To Offline Mode</string>
+    <string name="error_no_internet_connection">No Internet Connection !</string>
+    <string name="error_invalid_odoo_url">Invalid Odoo URL !</string>
+    <string name="error_provide_server_url">Provide server URL</string>
+    <string name="error_provide_username">Provide username</string>
+    <string name="error_provide_password">Provide password</string>
+    <string name="error_provide_database">Provide database</string>
+    <string name="error_invalid_username_or_password">Invalid Username or Password</string>
+    <string name="error_cannot_connect_to_server">Can not connect to server</string>
+    <string name="status_connecting_to_server">Connecting&#8230;</string>
+    <string name="status_connected_to_server">Connected</string>
+    <string name="status_logging_in">Logging in&#8230;</string>
+    <string name="status_login_success">Login Success</string>
+    <string name="disclaimer_content">By continuing, you agree to the Terms of Service and Privacy Policy</string>
+
+    <!-- Product template activity -->
+    <string name="detail_product_activity_label">Product-Pricelist</string>
+    <string name="detail_product_offline_activity_label">Product-Pricelist (Offline)</string>
+    <string name="product_template_title">Product List</string>
+    <string name="product_template_title_offline">Product List (Offline)</string>
+    <string name="start_download_alert_dialog_title_string">Start Download</string>
+    <string name="start_download_alert_dialog_string">Start downloading data from server?</string>
+    <string name="warning_download_is_in_progress">Download is starting. Please wait a while for this process to finish</string>
+    <string name="no_product_template">No product found!</string>
+    <string name="error_cannot_get_database">Can not get data from database!</string>
+    <string name="finish_download_product_alert_dialog_title_string">Product Download Finished</string>
+    <string name="finish_download_product_alert_dialog_string">Product data download has finished</string>
+    <string name="finish_download_pricelist_alert_dialog_title_string">Pricelist Download Finished</string>
+    <string name="finish_download_pricelist_alert_dialog_string">Pricelist data download has finished</string>
+    <string name="product_name_header">Product Name</string>
+    <string name="qty_header">Qty</string>
+    <string name="virtual_available_header">Qty*</string>
+    <string name="fetch_product_pricelist_string">Download Product-Pricelist</string>
+    <string name="detail_product_category_string">Category</string>
+    <string name="detail_product_uom_string">UoM</string>
+    <string name="detail_product_qty_ckl_string">Qty CKL</string>
+    <string name="detail_product_qty2_ckl_string">Qty* CKL</string>
+    <string name="detail_product_qty_prl_string">Qty PRL</string>
+    <string name="detail_product_qty2_prl_string">Qty* PRL</string>
+    <string name="detail_product_pricelist_section_string">Pricelist</string>
+    <string name="detail_product_pricelist_min_string">Min. Qty</string>
+    <string name="detail_product_pricelist_notes_string">Notes</string>
+
+    <!-- QR Scanner activity -->
+    <string name="scan_result_title">Scan Results</string>
+    <string name="qr_multiple_scan_results">Multiple product with the qr code found. Choose one from the following list to show</string>
+    <string name="dialog_list_title">Duplicate Products</string>
+    <string name="error_product_not_found">Product Not Found</string>
+</resources>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:background="@color/listviewBackground"
+    >
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/inside_margin"
+        android:paddingBottom="@dimen/inside_margin"
+        android:paddingRight="@dimen/inside_margin"
+        android:background="@color/itemBackground"
+        >
+
+        <TextView
+            android:id="@+id/code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="1"
+            android:textAllCaps="true"
+            android:textColor="@color/body_text_3"
+            android:textSize="10sp"
+            tools:text="D-FRG-TH-H" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:textColor="@color/body_text_1"
+            android:textSize="16sp"
+            tools:text="Bestar Printing 3" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/qty_available"
+        android:layout_width="@dimen/qty_margin"
+        android:layout_height="match_parent"
+        android:ellipsize="end"
+        android:paddingTop="@dimen/inside_margin"
+        android:paddingBottom="@dimen/inside_margin"
+        android:background="@color/itemDetailBackground"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textSize="15sp"
+        android:padding="8dp"
+        tools:text="1" />
+
+    <TextView
+        android:id="@+id/virtual_available"
+        android:layout_width="@dimen/virtual_available_margin"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:paddingTop="@dimen/inside_margin"
+        android:paddingBottom="@dimen/inside_margin"
+        android:background="@color/itemDetailBackground"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textSize="15sp"
+        android:padding="8dp"
+        tools:text="5" />
+
+</LinearLayout>

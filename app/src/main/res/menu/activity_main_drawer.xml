@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="@string/sale_string">
+        <menu>
+            <item
+                android:id="@+id/nav_product_online"
+                android:icon="@drawable/ic_dollar"
+                android:title="@string/product_string_online" />
+            <item
+                android:id="@+id/qr_scanner"
+                android:icon="@drawable/ic_search"
+                android:title="@string/qr_scanner_menu" />
+        </menu>
+    </item>
+
+    <item android:title="@string/stock_string">
+        <menu>
+        </menu>
+    </item>
+
+    <item android:title="@string/other_string">
+        <menu>
+            <item
+                android:id="@+id/nav_offline_mode"
+                android:icon="@drawable/ic_offline"
+                android:title="@string/offline_mode_string" />
+            <item
+                android:id="@+id/nav_login"
+                android:icon="@drawable/ic_logout"
+                android:title="@string/logout_string" />
+        </menu>
+    </item>
+
+</menu>

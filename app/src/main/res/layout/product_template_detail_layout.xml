@@ -261,7 +261,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="@dimen/default_8dp"
-                        android:layout_marginBottom="@dimen/default_8dp"
+                        android:layout_marginBottom="32dp"
                         android:background="@drawable/background_with_shadow" >
 
                         <TextView

@@ -28,7 +28,7 @@ public class QueryUtilsProductTemplate {
     /**
      * Query the Odoo server for stock picking list.
      */
-    public static ArrayList<ProductTemplate> searchReadProductTemplateList(String requestUrl, String databaseName, int userId, String password, Object[] filter, int limit, int offsetCounter) {
+    public static ArrayList<ProductTemplate> searchReadProductTemplateList(String requestUrl, String databaseName, final int userId, String password, Object[] filter, int limit, int offsetCounter) {
         // Create URL object
         ArrayList<URL> url = createUrl(requestUrl);
 
@@ -57,7 +57,7 @@ public class QueryUtilsProductTemplate {
         ArrayList<ProductTemplate> productTemplates = null;
         HashMap fieldsProductTemplateMap = ProductTemplate.getProductTemplateDetailFields();
         try {
-            String jsonResponse = QueryUtils.makeXmlRpcRequest(url.get(2), "execute_kw", new Object[]{databaseName, userId, password, PRODUCT_TEMPLATE, "read", Arrays.asList(itemId), fieldsProductTemplateMap});
+            String jsonResponse = readRpcRequest(url.get(2), databaseName, userId, password, PRODUCT_TEMPLATE, itemId, fieldsProductTemplateMap);
             productTemplates = ProductTemplate.parseJson(jsonResponse);
         } catch (Exception e) {
             e.printStackTrace();

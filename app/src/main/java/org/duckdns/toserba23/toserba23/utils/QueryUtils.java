@@ -36,8 +36,12 @@ public final class QueryUtils {
     public static final String PRODUCT_TEMPLATE = "product.template";
     public static final String PRODUCT_PRODUCT = "product.product";
     public static final String PRODUCT_PRICELIST = "product.pricelist.item";
+    public static final String SALE_ORDER = "sale.order";
+    public static final String SALE_ORDER_LINE = "sale.order.line";
+    public static final String RES_GROUPS = "res.groups";
     public static final String RES_USERS = "res.users";
     public static final String RES_PARTNER = "res.partner";
+    public static final String STOCK_WAREHOUSE = "stock.warehouse";
     public static final String STOCK_LOCATION = "stock.location";
     public static final String STOCK_PICKING = "stock.picking";
     public static final String STOCK_PACK_OPERATION = "stock.pack.operation";
@@ -50,7 +54,7 @@ public final class QueryUtils {
     // This variable determine number of records queried in a batch
     // Appropriate number tested!! Optimal value is 200-300
     public static final int BATCH_SIZE = 200;
-    public static final int LIMIT_PAGING_SIZE = 30;
+    public static final int LIMIT_PAGING_SIZE = 50;
 
     /**
      * Create a private constructor because no one should ever create a {@link QueryUtils} object.
@@ -226,7 +230,7 @@ public final class QueryUtils {
     /**
      * Save single stock picking detail change to Odoo server.
      *
-    public static void saveStockPicking(String requestUrl, String databaseName, int userId, String password, int pickingId, HashMap map, ArrayList<StockPackOperation> stockPackOperations) {
+    public static void saveOrder(String requestUrl, String databaseName, int userId, String password, int pickingId, HashMap map, ArrayList<StockPackOperation> stockPackOperations) {
         // Create URL object
         ArrayList<URL> url = createUrl(requestUrl);
 
@@ -458,6 +462,32 @@ public final class QueryUtils {
     }
 
     /**
+     * Wrapper for "read" RPC call
+     * @param url request URL
+     * @param databaseName name of the database to be queried
+     * @param userId
+     * @param password
+     * @param filter only query interesting record
+     * @param model name of the model to be queried
+     * @param map map of fields to be retrieved
+     * @return json response string
+     */
+    public static String readRpcRequest(URL url, String databaseName, int userId, String password, String model, int itemId, HashMap map) {
+        //Add language context to rpc request
+        HashMap lang = new HashMap();
+        lang.put("lang", "id_ID");
+        map.put("context", lang);
+
+        String response = null;
+        try {
+            response = makeXmlRpcRequest(url, "execute_kw", new Object[]{databaseName, userId, password, model, "read", Arrays.asList(itemId), map});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    /**
      * Wrapper for "search_read" RPC call
      * @param url request URL
      * @param databaseName name of the database to be queried
@@ -469,6 +499,11 @@ public final class QueryUtils {
      * @return json response string
      */
     public static String searchReadRpcRequest(URL url, String databaseName, int userId, String password, String model, Object[] filter, HashMap map) {
+        //Add language context to rpc request
+        HashMap lang = new HashMap();
+        lang.put("lang", "id_ID");
+        map.put("context", lang);
+
         String response = null;
         try {
             response = makeXmlRpcRequest(url, "execute_kw", new Object[]{databaseName, userId, password, model, "search_read", filter, map});
@@ -554,7 +589,7 @@ public final class QueryUtils {
             Object responseObject = client.call(command, params);
             jsonResponse = gson.toJson(responseObject);
 
-            Log.i(LOG_TAG, "Json response from server: " + jsonResponse);
+            //Log.i(LOG_TAG, "Json response from server: " + jsonResponse);
         } catch(XMLRPCServerException e) {
             e.printStackTrace();
             Log.e(LOG_TAG, "Problem connecting server XML-RPC", e);

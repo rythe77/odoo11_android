@@ -27,9 +27,10 @@ import android.widget.Toast;
 
 import org.duckdns.toserba23.toserba23.MainActivity;
 import org.duckdns.toserba23.toserba23.R;
-import org.duckdns.toserba23.toserba23.adapter.ProductTemplateAdapter;
-import org.duckdns.toserba23.toserba23.loader.ProductTemplateLoader;
-import org.duckdns.toserba23.toserba23.model.ProductTemplate;
+import org.duckdns.toserba23.toserba23.adapter.SaleOrderAdapter;
+import org.duckdns.toserba23.toserba23.loader.SaleOrderLoader;
+import org.duckdns.toserba23.toserba23.model.AccessRight;
+import org.duckdns.toserba23.toserba23.model.SaleOrder;
 import org.duckdns.toserba23.toserba23.utils.QueryUtilsAccessRight;
 
 import java.util.ArrayList;
@@ -41,11 +42,11 @@ import java.util.List;
  * Created by ryanto on 22/02/18.
  */
 
-public class Product extends Fragment {
+public class Sale extends Fragment {
 
-    private static final int FETCH_PRODUCT_TEMPLATE_LOADER_ID = 1;
+    private static final int FETCH_SALE_ORDER_LOADER_ID = 1;
 
-    private ProductTemplateAdapter mAdapter;
+    private SaleOrderAdapter mAdapter;
     private TextView mEmptyStateTextView;
     private SwipeRefreshLayout mSwipeView;
     private EditText mInputText;
@@ -59,8 +60,13 @@ public class Product extends Fragment {
     private String mDatabaseName;
     private int mUserId;
     private String mPassword;
+    private String mDefPartnerName;
+    private AccessRight mAccess;
 
-    private ArrayList<Object[]> mProductTemplateFilterElements = new ArrayList<Object[]>(){};
+    // Filter data
+    private ArrayList<Object[]> mSaleOrderFilterElements = new ArrayList<Object[]>(){};
+    private Boolean saleDraft = false;
+    private Boolean saleSale = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,32 +78,34 @@ public class Product extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        final View rootView = inflater.inflate(R.layout.product_template_list_view, container, false);
-
         // Initialize account information with data from Preferences
         mPref = this.getActivity().getSharedPreferences(getString(R.string.settings_shared_preferences_label), PRIVATE_MODE);
         mUrl = mPref.getString(getString(R.string.settings_url_key), null);
         mDatabaseName = mPref.getString(getString(R.string.settings_database_name__key), null);
         mUserId = mPref.getInt(getString(R.string.settings_user_id_key), 0);
         mPassword = mPref.getString(getString(R.string.settings_password_key), null);
+        mDefPartnerName = mPref.getString(getString(R.string.settings_def_partner_name_key), null);
+        mAccess = ((MainActivity)getActivity()).mAccess;
+
+        final View rootView = inflater.inflate(R.layout.standard_list_view, container, false);
 
         // Find a reference to the {@link ListView} in the layout
-        ListView productTemplateListView = (ListView) rootView.findViewById(R.id.list);
+        ListView saleOrderListView = (ListView) rootView.findViewById(R.id.list);
         mEmptyStateTextView = (TextView) rootView.findViewById(R.id.empty_view);
-        productTemplateListView.setEmptyView(mEmptyStateTextView);
+        saleOrderListView.setEmptyView(mEmptyStateTextView);
 
-        mAdapter = new ProductTemplateAdapter(getActivity(), new ArrayList<ProductTemplate>());
-        productTemplateListView.setAdapter(mAdapter);
+        mAdapter = new SaleOrderAdapter(getActivity(), new ArrayList<SaleOrder>());
+        saleOrderListView.setAdapter(mAdapter);
 
-        productTemplateListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        saleOrderListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                int productTmplId = mAdapter.getItem(i).getId();
+                int saleOrderId = mAdapter.getItem(i).getId();
 
                 // Send picking id to stock detail activity
-                Intent intent = new Intent(getActivity(), ProductDetail.class);
-                intent.putExtra("product_tmpl_id", productTmplId);
-                intent.putExtra(QueryUtilsAccessRight.ACCESS_RIGHT, ((MainActivity)getActivity()).mAccess);
+                Intent intent = new Intent(getActivity(), SaleLine.class);
+                intent.putExtra("order_id", saleOrderId);
+                intent.putExtra(QueryUtilsAccessRight.ACCESS_RIGHT, mAccess);
                 getActivity().startActivity(intent);
             }
         });
@@ -117,6 +125,9 @@ public class Product extends Fragment {
         );
 
         mInputText = (EditText) rootView.findViewById(R.id.input_search_text);
+        if (mDefPartnerName!=null) {
+            mInputText.setText(mDefPartnerName);
+        }
         if (mToggleInputText) {
             mInputText.setVisibility(View.VISIBLE);
         } else {
@@ -125,7 +136,8 @@ public class Product extends Fragment {
         mInputText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 createFilterData();
-                getLoaderManager().restartLoader(FETCH_PRODUCT_TEMPLATE_LOADER_ID, null, loadProductTemplateFromServerListener);
+                getData();
+                //getLoaderManager().restartLoader(FETCH_SALE_ORDER_LOADER_ID, null, loadSaleOrderFromServerListener);
                 InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 return true;
@@ -136,17 +148,17 @@ public class Product extends Fragment {
     }
 
     private void createFilterData() {
-        mProductTemplateFilterElements.clear();
-        mProductTemplateFilterElements.add(new Object[] {"active", "=", true});
-        mProductTemplateFilterElements.add(new Object[] {"sale_ok", "=", true});
-        mProductTemplateFilterElements.add(new Object[] {"name", "ilike", mInputText.getText().toString()});
+        mSaleOrderFilterElements.clear();
+        mSaleOrderFilterElements.add(new Object[] {"partner_id", "ilike", mInputText.getText().toString()});
+        if (saleDraft & !saleSale) {mSaleOrderFilterElements.add(new Object[] {"state", "=", "draft"});}
+        else if (!saleDraft & saleSale) {mSaleOrderFilterElements.add(new Object[] {"state", "=", "sale"});}
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle(getString(R.string.product_template_title));
+        getActivity().setTitle(getString(R.string.sale_order_title));
 
         // Fetch data from server
         createFilterData();
@@ -167,7 +179,7 @@ public class Product extends Fragment {
             LoaderManager loaderManager = getLoaderManager();
 
             // number the loaderManager with mPage as may be requesting up to three lots of JSON for each tab
-            loaderManager.initLoader(FETCH_PRODUCT_TEMPLATE_LOADER_ID, null, loadProductTemplateFromServerListener);
+            loaderManager.initLoader(FETCH_SALE_ORDER_LOADER_ID, null, loadSaleOrderFromServerListener);
         } else {
             // Otherwise, display error
             // First, hide loading indicator so error message will be visible
@@ -193,7 +205,7 @@ public class Product extends Fragment {
             LoaderManager loaderManager = getLoaderManager();
 
             // number the loaderManager with mPage as may be requesting up to three lots of JSON for each tab
-            loaderManager.restartLoader(FETCH_PRODUCT_TEMPLATE_LOADER_ID, null, loadProductTemplateFromServerListener);
+            loaderManager.restartLoader(FETCH_SALE_ORDER_LOADER_ID, null, loadSaleOrderFromServerListener);
         } else {
             // Otherwise, display error
             // First, hide loading indicator so error message will be visible
@@ -209,13 +221,12 @@ public class Product extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu options from the res/menu/menu_catalog.xml file.
         // This adds menu items to the app bar.
-        inflater.inflate(R.menu.product_template_options, menu);
+        inflater.inflate(R.menu.sale_order_options, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // Respond to a click on the "Insert dummy data" menu option
             case R.id.show_search_input_text:
                 mToggleInputText = !mToggleInputText;
                 if (mToggleInputText) {
@@ -224,52 +235,71 @@ public class Product extends Fragment {
                     mInputText.setVisibility(View.GONE);
                 }
                 return true;
-            case R.id.show_preference_settings:
-                ((MainActivity)getActivity()).displaySelectedScreen(R.id.show_preference_settings);
+            case R.id.checkbox_sale_draft:
+                if (item.isChecked()) {
+                    item.setChecked(false);
+                    saleDraft = false;
+                } else {
+                    item.setChecked(true);
+                    saleDraft = true;
+                }
+                createFilterData();
+                getData();
+                return true;
+            case R.id.checkbox_sale_sale:
+                if (item.isChecked()) {
+                    item.setChecked(false);
+                    saleSale = false;
+                } else {
+                    item.setChecked(true);
+                    saleSale = true;
+                }
+                createFilterData();
+                getData();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private LoaderManager.LoaderCallbacks<List<ProductTemplate>> loadProductTemplateFromServerListener = new LoaderManager.LoaderCallbacks<List<ProductTemplate>>() {
+    private LoaderManager.LoaderCallbacks<List<SaleOrder>> loadSaleOrderFromServerListener = new LoaderManager.LoaderCallbacks<List<SaleOrder>>() {
         @Override
-        public Loader<List<ProductTemplate>> onCreateLoader(int i, Bundle bundle) {
+        public Loader<List<SaleOrder>> onCreateLoader(int i, Bundle bundle) {
             Object[] filterArray = new Object[] {
-                    mProductTemplateFilterElements
+                    mSaleOrderFilterElements
             };
-            return new ProductTemplateLoader(getActivity(), mUrl, mDatabaseName, mUserId, mPassword, filterArray);
+            return new SaleOrderLoader(getActivity(), mUrl, mDatabaseName, mUserId, mPassword, filterArray);
         }
 
         @Override
-        public void onLoadFinished(Loader<List<ProductTemplate>> loader, List<ProductTemplate> productTemplates) {
+        public void onLoadFinished(Loader<List<SaleOrder>> loader, List<SaleOrder> saleOrders) {
             // Hide loading indicator because the data has been loaded
             View loadingIndicator = getView().findViewById(R.id.loading_spinner);
             loadingIndicator.setVisibility(View.GONE);
             mSwipeView.setRefreshing(false);
 
-            // Set empty state text to display "No available stock picking."
-            mEmptyStateTextView.setText(R.string.no_product_template);
+            // Set empty state text to display "No available sale order."
+            mEmptyStateTextView.setText(R.string.sale_order_not_found);
 
-            // Clear the adapter of previous stock picking
+            // Clear the adapter of previous sale order
             mAdapter.clear();
 
-            // If there is a valid list of {@link stock picking}s, then add them to the adapter's
+            // If there is a valid list of {@link sale order}s, then add them to the adapter's
             // data set. This will trigger the ListView to update.
-            if (productTemplates != null && !productTemplates.isEmpty()) {
-                Collections.sort(productTemplates, new Comparator<ProductTemplate>() {
+            if (saleOrders != null && !saleOrders.isEmpty()) {
+                Collections.sort(saleOrders, new Comparator<SaleOrder>() {
                     @Override
-                    public int compare(ProductTemplate item1, ProductTemplate item2) {
-                        return item1.getName().compareToIgnoreCase(item2.getName());
+                    public int compare(SaleOrder item1, SaleOrder item2) {
+                        return item2.getName().compareToIgnoreCase(item1.getName());
                     }
                 });
-                mAdapter.addAll(productTemplates);
+                mAdapter.addAll(saleOrders);
             } else {
-                Toast.makeText(getActivity(), R.string.error_product_not_found, Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), R.string.error_order_not_found, Toast.LENGTH_LONG).show();
             }
         }
 
         @Override
-        public void onLoaderReset(Loader<List<ProductTemplate>> loader) {
+        public void onLoaderReset(Loader<List<SaleOrder>> loader) {
             // Loader reset, so we can clear out our existing data.
             mAdapter.clear();
         }

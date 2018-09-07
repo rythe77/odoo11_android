@@ -24,6 +24,17 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        app:layout_anchor="@id/toolbar"
+        app:layout_anchorGravity="right|center_vertical"
+        android:src="@drawable/ic_add_circle"
+        android:layout_margin="16dp"
+        />
+
     <include layout="@layout/product_template_detail_layout"
         android:id="@+id/content_layout_container"
         />

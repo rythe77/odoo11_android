@@ -40,19 +40,22 @@
     <string name="no_string">No</string>
     <string name="ok_string">OK</string>
     <string name="search_string">Search</string>
+    <string name="setting_string">Setting</string>
     <string name="logout_confirm">Are you sure you want to logout?</string>
+    <string name="no_access_right_error">You are not authorized to access the data. Contact your system administrator for more information.</string>
 
     <!-- Drawer Menu -->
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="sale_string">Sales</string>
     <string name="product_string_online">Product-Pricelist</string>
+    <string name="product_string_offline">Product-Pricelist(Offline)</string>
     <string name="qr_scanner_menu">QR Scanner</string>
+    <string name="sale_menu">Sales Order</string>
     <string name="stock_string">Inventory</string>
     <string name="other_string">Others</string>
     <string name="offline_mode_string">To Offline Mode</string>
     <string name="logout_string">Logout</string>
-    <string name="product_string_offline">Product-Pricelist(Offline)</string>
     <string name="online_mode_string">To Online Mode</string>
 
     <!-- Login activity -->
@@ -81,7 +84,19 @@
     <string name="status_login_success">Login Success</string>
     <string name="disclaimer_content">By continuing, you agree to the Terms of Service and Privacy Policy</string>
 
-    <!-- Product template activity -->
+    <!-- Settings activity -->
+    <string name="settings_title">Settings</string>
+    <string name="default_partner_string">Default Partner</string>
+    <string name="default_partner_explanation">Partner selected here will be used to filter quotation and sale order. You can add product to quotation only when a default partner exist.</string>
+    <string name="default_partner_dialog_title">Default Partner Change</string>
+    <string name="default_partner_dialog_exp">Choose Clear button to delete any selected default partner. Enter new partner name and enter to choose new default partner</string>
+    <string name="default_partner_dialog_exp2">Enter new partner name</string>
+    <string name="default_partner_dialog_clear_button">Clear</string>
+    <string name="default_partner_dialog_change_button">Change</string>
+    <string name="settings_def_partner_id_key" translatable="false">default_partner_id</string>
+    <string name="settings_def_partner_name_key" translatable="false">default_partner_name</string>
+
+    <!-- Product activity -->
     <string name="detail_product_activity_label">Product-Pricelist</string>
     <string name="detail_product_offline_activity_label">Product-Pricelist (Offline)</string>
     <string name="product_template_title">Product List</string>
@@ -108,10 +123,46 @@
     <string name="detail_product_pricelist_section_string">Pricelist</string>
     <string name="detail_product_pricelist_min_string">Min. Qty</string>
     <string name="detail_product_pricelist_notes_string">Notes</string>
+    <string name="detail_product_options_menu_add_string">Add to quotation</string>
+    <string name="detail_product_options_add_so_dialog_title">Add to quotation</string>
+    <string name="detail_product_options_add_so_dialog_product_label">Product Qty</string>
+    <string name="detail_product_options_add_so_dialog_notes_label">Notes</string>
+    <string name="detail_product_options_add_so_dialog_exp">Choose from the following quotation to add the product to it. Choose Create New button to create new quotation.</string>
+    <string name="detail_product_options_add_so_dialog_create">Create New</string>
+    <string name="detail_product_options_add_so_dialog_no_quotation">No Quotation</string>
+    <string name="error_no_default_partner">Please provide default partner from the setting page</string>
+    <string name="detail_product_options_add_so_success">Adding product success!</string>
+    <string name="detail_product_options_add_so_failed">Failed adding product!</string>
 
     <!-- QR Scanner activity -->
+    <string name="qr_scan_title">Product QR Scan</string>
     <string name="scan_result_title">Scan Results</string>
     <string name="qr_multiple_scan_results">Multiple product with the qr code found. Choose one from the following list to show</string>
     <string name="dialog_list_title">Duplicate Products</string>
     <string name="error_product_not_found">Product Not Found</string>
+
+    <!-- Sale activity -->
+    <string name="sale_order_title">Sale Order List</string>
+    <string name="detail_sale_line_activity_label">Sale Order Detail</string>
+    <string name="sale_menu_options_draft">Quotation</string>
+    <string name="sale_menu_options_sale">Sales Order</string>
+    <string name="sale_order_not_found">Sale Order Not Found</string>
+    <string name="error_order_not_found">Sale Order Not Found</string>
+    <string name="detail_sale_order_partner">Partner</string>
+    <string name="detail_sale_order_payment_term">Payment Terms</string>
+    <string name="detail_sale_order_warehouse">Warehouse</string>
+    <string name="detail_sale_order_pricelist">Pricelist</string>
+    <string name="detail_sale_order_line">Order Detail</string>
+    <string name="detail_sale_order_cross_sign" translatable="false">x</string>
+    <string name="detail_sale_order_total">Total</string>
+    <string name="detail_sale_order_delivery_information">Delivery Information</string>
+    <string name="detail_sale_order_transporter">Transporter</string>
+    <string name="detail_sale_order_delivery">Delivery</string>
+    <string name="detail_sale_order_vehicle">Vehicle</string>
+    <string name="detail_sale_order_delivery_date">Delivery Date</string>
+    <string name="detail_sale_order_other_notes">Other Notes</string>
+    <string name="detail_sale_order_confirm_refuse">This sale order is already confirmed!</string>
+    <string name="detail_sale_order_confirm_dialog">Are you sure you want to confirm this quotation?</string>
+    <string name="detail_sale_order_confirm_success">Successfully confirmed the quotation</string>
+    <string name="detail_sale_order_confirm_failed">Failed at confirming the quotation</string>
 </resources>

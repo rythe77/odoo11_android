@@ -47,6 +47,11 @@
             android:label="@string/detail_product_offline_activity_label"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".fragment.SaleLine"
+            android:label="@string/detail_sale_line_activity_label"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

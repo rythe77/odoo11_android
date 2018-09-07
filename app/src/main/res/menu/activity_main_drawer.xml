@@ -7,12 +7,16 @@
         <menu>
             <item
                 android:id="@+id/nav_product_online"
-                android:icon="@drawable/ic_dollar"
+                android:icon="@drawable/ic_toys_black"
                 android:title="@string/product_string_online" />
             <item
                 android:id="@+id/qr_scanner"
                 android:icon="@drawable/ic_search"
                 android:title="@string/qr_scanner_menu" />
+            <item
+                android:id="@+id/sale"
+                android:icon="@drawable/ic_dollar"
+                android:title="@string/sale_menu" />
         </menu>
     </item>
 
@@ -20,6 +24,11 @@
         <menu>
         </menu>
     </item>
+
+    <item
+        android:id="@+id/show_preference_settings"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="@string/setting_string"/>
 
     <item android:title="@string/other_string">
         <menu>

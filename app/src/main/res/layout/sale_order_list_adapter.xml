@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/inside_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/inside_margin"
+    android:paddingBottom="@dimen/activity_horizontal_margin"
+    android:background="@color/itemBackground"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/itemBackground"
+        >
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="1"
+            android:textColor="@color/body_text_3"
+            android:textSize="10sp"
+            tools:text="13 September 2018" />
+
+        <TextView
+            android:id="@+id/state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="end"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="1"
+            android:textColor="@color/body_text_3"
+            android:textSize="10sp"
+            tools:text="Penawaran"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:background="@color/itemBackground"
+        >
+        <TextView
+            android:id="@+id/ref"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:textColor="@color/body_text_1"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="SO/1808/399" />
+
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="end"
+            android:textColor="@color/body_text_1"
+            android:textSize="16sp"
+            tools:text="Rp 12.000.000" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:background="@color/itemBackground"
+        >
+        <TextView
+            android:id="@+id/partner"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:textColor="@color/body_text_1"
+            android:textSize="16sp"
+            tools:text="Dg Mappi Tana Toa" />
+
+        <TextView
+            android:id="@+id/warehouse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="end"
+            android:textColor="@color/body_text_3"
+            android:textSize="16sp"
+            tools:text="Cakalang" />
+    </LinearLayout>
+</LinearLayout>

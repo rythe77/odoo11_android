@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/show_preference_settings"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="@string/setting_string"
+        android:visible="true"
+        app:showAsAction="always"/>
+    <item
         android:id="@+id/show_search_input_text"
         android:icon="@drawable/ic_search"
         android:title="@string/search_string"

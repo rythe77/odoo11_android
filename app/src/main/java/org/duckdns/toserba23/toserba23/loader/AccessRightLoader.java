@@ -8,14 +8,13 @@ import org.duckdns.toserba23.toserba23.utils.QueryUtils;
 import org.duckdns.toserba23.toserba23.utils.QueryUtilsAccessRight;
 import org.duckdns.toserba23.toserba23.utils.QueryUtilsProductTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by ryanto on 23/02/18.
  */
 
-public class ProductTemplateLoader extends AsyncTaskLoader<List<ProductTemplate>> {
+public class AccessRightLoader extends AsyncTaskLoader<List<String>> {
 
     /** Tag for log messages */
     private static final String LOG_TAG = Context.class.getName();
@@ -31,7 +30,7 @@ public class ProductTemplateLoader extends AsyncTaskLoader<List<ProductTemplate>
      * @param context of the activity
      * @param url to load data from
      */
-    public ProductTemplateLoader(Context context, String url, String databaseName, int userId, String password, Object[] filter) {
+    public AccessRightLoader(Context context, String url, String databaseName, int userId, String password, Object[] filter) {
         super(context);
         mUrl = url;
         mDatabaseName = databaseName;
@@ -49,13 +48,13 @@ public class ProductTemplateLoader extends AsyncTaskLoader<List<ProductTemplate>
      * This is on a background thread.
      */
     @Override
-    public List<ProductTemplate> loadInBackground() {
+    public List<String> loadInBackground() {
         if (mUrl == null) {
             return null;
         }
 
         // Perform the network request, parse the response, and extract a list of earthquakes.
-        List<ProductTemplate> productTemplates = QueryUtilsProductTemplate.searchReadProductTemplateList(mUrl, mDatabaseName, mUserId, mPassword, mFilter, QueryUtils.LIMIT_PAGING_SIZE, 0);
-        return productTemplates;
+        List<String> resGroups = QueryUtilsAccessRight.searchReadResGroups(mUrl, mDatabaseName, mUserId, mPassword, mFilter);
+        return resGroups;
     }
 }

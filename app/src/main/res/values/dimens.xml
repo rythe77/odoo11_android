@@ -25,4 +25,7 @@
 
     <!-- Sale order draft width for each column -->
     <dimen name="total_amount_margin">150dp</dimen>
+
+    <!-- SO list height on "add product to so" page-->
+    <dimen name="so_list_height">200dp</dimen>
 </resources>

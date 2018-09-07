@@ -6,8 +6,9 @@ package org.duckdns.toserba23.toserba23.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 
-import org.duckdns.toserba23.toserba23.R;
+//import org.duckdns.toserba23.toserba23.R;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -137,6 +138,28 @@ public final class DisplayFormatter {
     }
 
     /**
+     * Return the formatted discount on sale order line.
+     */
+    public static String formatDiscountLine(int qty) {
+        if(qty == 0) {
+            return "";
+        } else {
+            return "( Discount " + String.valueOf(qty) + "% ) ";
+        }
+    }
+
+    /**
+     * Return the formatted product description on sale order line.
+     */
+    public static String formatProductDesc(String productDesc) {
+        if (productDesc == null || productDesc.contains("false") || TextUtils.isEmpty(productDesc)) {
+            return "";
+        } else {
+            return "( " + productDesc + " ) ";
+        }
+    }
+
+    /**
      * Return only product code from the full product name
      * If code is not detected, return empty string
      */
@@ -168,7 +191,7 @@ public final class DisplayFormatter {
      * Return the color ID matching the stock picking status. Use
      * ContextCompat.getColor(getActivity(), stateColorResourceId)
      * on the returned result to get the color ID
-     */
+     *
     public static int getStockPickingStateColor (String state) {
         int stateColorResourceId;
         switch (state) {
@@ -199,4 +222,5 @@ public final class DisplayFormatter {
         }
         return stateColorResourceId;
     }
+     */
 }

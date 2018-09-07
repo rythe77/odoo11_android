@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#AD0000</color>
     <color name="colorPrimaryDark">#660000</color>
-    <color name="colorAccent">#00adad</color>
+    <color name="colorAccent">#00ad00</color>
     <color name="theme_primary_background">#fff9f5</color>
     <color name="theme_primary_dark_background">#fff6f0</color>
     <color name="offlineColorPrimary">#323232</color>
@@ -24,6 +24,7 @@
     <color name="base_document_background">#eee9e9</color>
     <color name="base_button_default_background">#8b8989</color>
     <color name="divider">#BDBDBD</color>
+    <color name="black_divider">#de000000</color>
     <!-- Stock picking status color set -->
     <color name="state_draft">#0099CC</color>
     <color name="state_waiting">#AA66CC</color>

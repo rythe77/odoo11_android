@@ -21,9 +21,11 @@ import android.widget.Toast;
 
 import com.google.zxing.Result;
 
+import org.duckdns.toserba23.toserba23.MainActivity;
 import org.duckdns.toserba23.toserba23.R;
 import org.duckdns.toserba23.toserba23.loader.ProductTemplateLoader;
 import org.duckdns.toserba23.toserba23.model.ProductTemplate;
+import org.duckdns.toserba23.toserba23.utils.QueryUtilsAccessRight;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +67,13 @@ public class QRScanner extends Fragment implements ZXingScannerView.ResultHandle
 
         mScannerView = new ZXingScannerView(getActivity());
         return mScannerView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //you can set the title for your toolbar here for different fragments different titles
+        getActivity().setTitle(getString(R.string.qr_scan_title));
     }
 
     @Override
@@ -165,6 +174,7 @@ public class QRScanner extends Fragment implements ZXingScannerView.ResultHandle
     public void startProductDetailActivity() {
         Intent intent = new Intent(getActivity(), ProductDetail.class);
         intent.putExtra("product_tmpl_id", mProductTmplId);
+        intent.putExtra(QueryUtilsAccessRight.ACCESS_RIGHT, ((MainActivity)getActivity()).mAccess);
         getActivity().startActivity(intent);
     }
 }

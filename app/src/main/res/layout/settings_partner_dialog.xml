@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:title="@string/settings_title"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/inside_margin"
+    android:orientation="vertical"
+    android:background="@drawable/background_with_shadow"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_margin"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:textColor="@color/body_text_1"
+        android:textSize="@dimen/text_size_xlarge"
+        android:text="@string/default_partner_dialog_title"
+        tools:text="Mengubah Rekanan Standar"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layerType="software"
+        android:background="@drawable/line_section_separator" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/inside_margin"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:textColor="@color/body_text_1"
+        android:textSize="@dimen/text_size_medium"
+        android:text="@string/default_partner_dialog_exp"
+        />
+
+    <EditText
+        android:id="@+id/input_search_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_16dp"
+        android:shadowColor="@color/searchBackground"
+        android:inputType="text"
+        android:imeOptions="actionDone"
+        />
+
+    <Button
+        android:id="@+id/settings_clear_def_partner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_16dp"
+        android:text="@string/default_partner_dialog_clear_button"
+        />
+</LinearLayout>

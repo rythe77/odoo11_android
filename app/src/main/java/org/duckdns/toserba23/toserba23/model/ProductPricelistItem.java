@@ -114,7 +114,7 @@ public class ProductPricelistItem {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                Log.e("StockPackOperation", "Problem parsing the JSON results", e);
+                Log.e("ProductPricelistItem", "Problem parsing the JSON results", e);
             }
         }
         return productPricelistItems;

@@ -27,10 +27,10 @@ import android.widget.Toast;
 
 import org.duckdns.toserba23.toserba23.MainActivity;
 import org.duckdns.toserba23.toserba23.R;
-import org.duckdns.toserba23.toserba23.adapter.SaleOrderAdapter;
-import org.duckdns.toserba23.toserba23.loader.SaleOrderLoader;
+import org.duckdns.toserba23.toserba23.adapter.StockPickingAdapter;
+import org.duckdns.toserba23.toserba23.loader.StockPickingLoader;
 import org.duckdns.toserba23.toserba23.model.AccessRight;
-import org.duckdns.toserba23.toserba23.model.SaleOrder;
+import org.duckdns.toserba23.toserba23.model.StockPicking;
 import org.duckdns.toserba23.toserba23.utils.QueryUtilsAccessRight;
 
 import java.util.ArrayList;
@@ -42,11 +42,18 @@ import java.util.List;
  * Created by ryanto on 22/02/18.
  */
 
-public class Sale extends Fragment {
+public class Stock extends Fragment {
 
-    private static final int FETCH_SALE_ORDER_LOADER_ID = 1;
+    private static final int FETCH_STOCK_PICKING_LOADER_ID = 1;
+    private static final String ALL = "";
+    private static final String PENERIMAAN = "Penerimaan";
+    private static final String TRANSFER = "Transfer Internal";
+    private static final String PENGIRIMAN = "Order Pengiriman";
+    private static final int STOCK_ALL = 0;
+    private static final int STOCK_NOT_DONE = 1;
+    private static final int STOCK_WAITING = 2;
 
-    private SaleOrderAdapter mAdapter;
+    private StockPickingAdapter mAdapter;
     private TextView mEmptyStateTextView;
     private SwipeRefreshLayout mSwipeView;
     private EditText mInputText;
@@ -60,13 +67,12 @@ public class Sale extends Fragment {
     private String mDatabaseName;
     private int mUserId;
     private String mPassword;
-    private String mDefPartnerName;
     private AccessRight mAccess;
 
     // Filter data
-    private ArrayList<Object[]> mSaleOrderFilterElements = new ArrayList<Object[]>(){};
-    private Boolean saleDraft = false;
-    private Boolean saleSale = false;
+    private ArrayList<Object[]> mStockPickingFilterElements = new ArrayList<Object[]>(){};
+    private String mStockTypeFilter = ALL;
+    private int mStockStateFilter = STOCK_ALL;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,27 +90,26 @@ public class Sale extends Fragment {
         mDatabaseName = mPref.getString(getString(R.string.settings_database_name__key), null);
         mUserId = mPref.getInt(getString(R.string.settings_user_id_key), 0);
         mPassword = mPref.getString(getString(R.string.settings_password_key), null);
-        mDefPartnerName = mPref.getString(getString(R.string.settings_def_partner_name_key), null);
         mAccess = ((MainActivity)getActivity()).mAccess;
 
         final View rootView = inflater.inflate(R.layout.standard_list_view, container, false);
 
         // Find a reference to the {@link ListView} in the layout
-        ListView saleOrderListView = (ListView) rootView.findViewById(R.id.list);
+        ListView stockPickingListView = (ListView) rootView.findViewById(R.id.list);
         mEmptyStateTextView = (TextView) rootView.findViewById(R.id.empty_view);
-        saleOrderListView.setEmptyView(mEmptyStateTextView);
+        stockPickingListView.setEmptyView(mEmptyStateTextView);
 
-        mAdapter = new SaleOrderAdapter(getActivity(), new ArrayList<SaleOrder>());
-        saleOrderListView.setAdapter(mAdapter);
+        mAdapter = new StockPickingAdapter(getActivity(), new ArrayList<StockPicking>());
+        stockPickingListView.setAdapter(mAdapter);
 
-        saleOrderListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        stockPickingListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                int saleOrderId = mAdapter.getItem(i).getId();
+                int stockPickingId = mAdapter.getItem(i).getId();
 
                 // Send picking id to stock detail activity
-                Intent intent = new Intent(getActivity(), SaleLine.class);
-                intent.putExtra("order_id", saleOrderId);
+                Intent intent = new Intent(getActivity(), StockDetail.class);
+                intent.putExtra("picking_id", stockPickingId);
                 intent.putExtra(QueryUtilsAccessRight.ACCESS_RIGHT, mAccess);
                 getActivity().startActivity(intent);
             }
@@ -125,9 +130,6 @@ public class Sale extends Fragment {
         );
 
         mInputText = (EditText) rootView.findViewById(R.id.input_search_text);
-        if (mDefPartnerName!=null) {
-            mInputText.setText(mDefPartnerName);
-        }
         if (mToggleInputText) {
             mInputText.setVisibility(View.VISIBLE);
         } else {
@@ -147,17 +149,28 @@ public class Sale extends Fragment {
     }
 
     private void createFilterData() {
-        mSaleOrderFilterElements.clear();
-        mSaleOrderFilterElements.add(new Object[] {"partner_id", "ilike", mInputText.getText().toString()});
-        if (saleDraft & !saleSale) {mSaleOrderFilterElements.add(new Object[] {"state", "=", "draft"});}
-        else if (!saleDraft & saleSale) {mSaleOrderFilterElements.add(new Object[] {"state", "=", "sale"});}
+        mStockPickingFilterElements.clear();
+        // Internal transfers have null partner_id. So only when the transfer type is not internal, then perform the partner search
+        if (!mStockTypeFilter.isEmpty()) {
+            if (!mStockTypeFilter.equals(TRANSFER)) {
+                mStockPickingFilterElements.add(new Object[] {"partner_id", "ilike", mInputText.getText().toString()});
+            }
+            mStockPickingFilterElements.add(new Object[]{"picking_type_id", "ilike", mStockTypeFilter});
+        } else {
+            mStockPickingFilterElements.add(new Object[] {"partner_id", "ilike", mInputText.getText().toString()});
+        }
+        if (mStockStateFilter==STOCK_NOT_DONE) {
+            mStockPickingFilterElements.add(new Object[]{"state", "in", new Object[]{"draft", "confirmed", "partially_available", "assigned"}});
+        } else if (mStockStateFilter==STOCK_WAITING) {
+            mStockPickingFilterElements.add(new Object[]{"state", "in", new Object[]{"waiting_validation"}});
+        }
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle(getString(R.string.sale_order_title));
+        getActivity().setTitle(getString(R.string.stock_picking_title));
 
         // Fetch data from server
         createFilterData();
@@ -178,7 +191,7 @@ public class Sale extends Fragment {
             LoaderManager loaderManager = getLoaderManager();
 
             // number the loaderManager with mPage as may be requesting up to three lots of JSON for each tab
-            loaderManager.initLoader(FETCH_SALE_ORDER_LOADER_ID, null, loadSaleOrderFromServerListener);
+            loaderManager.initLoader(FETCH_STOCK_PICKING_LOADER_ID, null, loadStockPickingFromServerListener);
         } else {
             // Otherwise, display error
             // First, hide loading indicator so error message will be visible
@@ -204,7 +217,7 @@ public class Sale extends Fragment {
             LoaderManager loaderManager = getLoaderManager();
 
             // number the loaderManager with mPage as may be requesting up to three lots of JSON for each tab
-            loaderManager.restartLoader(FETCH_SALE_ORDER_LOADER_ID, null, loadSaleOrderFromServerListener);
+            loaderManager.restartLoader(FETCH_STOCK_PICKING_LOADER_ID, null, loadStockPickingFromServerListener);
         } else {
             // Otherwise, display error
             // First, hide loading indicator so error message will be visible
@@ -220,7 +233,7 @@ public class Sale extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu options from the res/menu/menu_catalog.xml file.
         // This adds menu items to the app bar.
-        inflater.inflate(R.menu.sale_order_options, menu);
+        inflater.inflate(R.menu.stock_picking_options, menu);
     }
 
     @Override
@@ -234,27 +247,52 @@ public class Sale extends Fragment {
                     mInputText.setVisibility(View.GONE);
                 }
                 return true;
-            case R.id.checkbox_sale_all:
+            case R.id.checkbox_stock_type_all:
                 if (item.isChecked()) { item.setChecked(false);
                 } else { item.setChecked(true); }
-                saleDraft = false;
-                saleSale = false;
+                mStockTypeFilter = ALL;
                 createFilterData();
                 getData();
                 return true;
-            case R.id.checkbox_sale_draft:
+            case R.id.checkbox_stock_in:
                 if (item.isChecked()) { item.setChecked(false);
                 } else { item.setChecked(true); }
-                saleDraft = true;
-                saleSale = false;
+                mStockTypeFilter = PENERIMAAN;
                 createFilterData();
                 getData();
                 return true;
-            case R.id.checkbox_sale_sale:
+            case R.id.checkbox_stock_int:
                 if (item.isChecked()) { item.setChecked(false);
                 } else { item.setChecked(true); }
-                saleDraft = false;
-                saleSale = true;
+                mStockTypeFilter = TRANSFER;
+                createFilterData();
+                getData();
+                return true;
+            case R.id.checkbox_stock_out:
+                if (item.isChecked()) { item.setChecked(false);
+                } else { item.setChecked(true); }
+                mStockTypeFilter = PENGIRIMAN;
+                createFilterData();
+                getData();
+                return true;
+            case R.id.checkbox_stock_state_all:
+                if (item.isChecked()) { item.setChecked(false);
+                } else { item.setChecked(true); }
+                mStockStateFilter = STOCK_ALL;
+                createFilterData();
+                getData();
+                return true;
+            case R.id.checkbox_stock_not_done:
+                if (item.isChecked()) { item.setChecked(false);
+                } else { item.setChecked(true); }
+                mStockStateFilter = STOCK_NOT_DONE;
+                createFilterData();
+                getData();
+                return true;
+            case R.id.checkbox_stock_waiting:
+                if (item.isChecked()) { item.setChecked(false);
+                } else { item.setChecked(true); }
+                mStockStateFilter = STOCK_WAITING;
                 createFilterData();
                 getData();
                 return true;
@@ -262,45 +300,45 @@ public class Sale extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    private LoaderManager.LoaderCallbacks<List<SaleOrder>> loadSaleOrderFromServerListener = new LoaderManager.LoaderCallbacks<List<SaleOrder>>() {
+    private LoaderManager.LoaderCallbacks<List<StockPicking>> loadStockPickingFromServerListener = new LoaderManager.LoaderCallbacks<List<StockPicking>>() {
         @Override
-        public Loader<List<SaleOrder>> onCreateLoader(int i, Bundle bundle) {
+        public Loader<List<StockPicking>> onCreateLoader(int i, Bundle bundle) {
             Object[] filterArray = new Object[] {
-                    mSaleOrderFilterElements
+                    mStockPickingFilterElements
             };
-            return new SaleOrderLoader(getActivity(), mUrl, mDatabaseName, mUserId, mPassword, filterArray);
+            return new StockPickingLoader(getActivity(), mUrl, mDatabaseName, mUserId, mPassword, filterArray);
         }
 
         @Override
-        public void onLoadFinished(Loader<List<SaleOrder>> loader, List<SaleOrder> saleOrders) {
+        public void onLoadFinished(Loader<List<StockPicking>> loader, List<StockPicking> stockPickings) {
             // Hide loading indicator because the data has been loaded
             View loadingIndicator = getView().findViewById(R.id.loading_spinner);
             loadingIndicator.setVisibility(View.GONE);
             mSwipeView.setRefreshing(false);
 
             // Set empty state text to display "No available sale order."
-            mEmptyStateTextView.setText(R.string.sale_order_not_found);
+            mEmptyStateTextView.setText(R.string.stock_picking_not_found);
 
             // Clear the adapter of previous sale order
             mAdapter.clear();
 
             // If there is a valid list of {@link sale order}s, then add them to the adapter's
             // data set. This will trigger the ListView to update.
-            if (saleOrders != null && !saleOrders.isEmpty()) {
-                Collections.sort(saleOrders, new Comparator<SaleOrder>() {
+            if (stockPickings != null && !stockPickings.isEmpty()) {
+                Collections.sort(stockPickings, new Comparator<StockPicking>() {
                     @Override
-                    public int compare(SaleOrder item1, SaleOrder item2) {
+                    public int compare(StockPicking item1, StockPicking item2) {
                         return item2.getName().compareToIgnoreCase(item1.getName());
                     }
                 });
-                mAdapter.addAll(saleOrders);
+                mAdapter.addAll(stockPickings);
             } else {
-                Toast.makeText(getActivity(), R.string.error_order_not_found, Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), R.string.stock_picking_not_found, Toast.LENGTH_LONG).show();
             }
         }
 
         @Override
-        public void onLoaderReset(Loader<List<SaleOrder>> loader) {
+        public void onLoaderReset(Loader<List<StockPicking>> loader) {
             // Loader reset, so we can clear out our existing data.
             mAdapter.clear();
         }

@@ -7,20 +7,25 @@
         android:title="@string/search_string"
         android:visible="true"
         app:showAsAction="always"/>
-    <item
-        android:id="@+id/checkbox_sale_draft"
-        android:title="@string/sale_menu_options_draft"
-        android:titleCondensed="@string/sale_menu_options_draft"
-        android:visible="true"
-        android:checkable="true"
-        android:checked="false"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/checkbox_sale_sale"
-        android:title="@string/sale_menu_options_sale"
-        android:titleCondensed="@string/sale_menu_options_sale"
-        android:visible="true"
-        android:checkable="true"
-        android:checked="false"
-        app:showAsAction="never"/>
+    <group
+        android:id="@+id/sale_state_filter"
+        android:checkableBehavior="single"
+        >
+        <item
+            android:id="@+id/checkbox_sale_all"
+            android:title="@string/sale_menu_options_all"
+            android:titleCondensed="@string/sale_menu_options_all"
+            android:checked="true"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/checkbox_sale_draft"
+            android:title="@string/sale_menu_options_draft"
+            android:titleCondensed="@string/sale_menu_options_draft"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/checkbox_sale_sale"
+            android:title="@string/sale_menu_options_sale"
+            android:titleCondensed="@string/sale_menu_options_sale"
+            app:showAsAction="never"/>
+    </group>
 </menu>

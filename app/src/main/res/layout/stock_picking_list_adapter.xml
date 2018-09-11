@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/inside_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/inside_margin"
+    android:paddingBottom="@dimen/activity_horizontal_margin"
+    android:background="@color/itemBackground"
+    >
+    <TextView
+        android:id="@+id/dot_indicator"
+        android:layout_width="@dimen/dot_indicator_circle_size"
+        android:layout_height="@dimen/dot_indicator_circle_size"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="@dimen/default_16dp"
+        android:background="@drawable/circle_state_color"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/itemBackground"
+            >
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/body_text_3"
+                android:textSize="10sp"
+                tools:text="13 September 2018 15:50" />
+
+            <TextView
+                android:id="@+id/origin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="end"
+                android:maxLines="1"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/body_text_3"
+                android:textSize="10sp"
+                tools:text="SO/1808/012"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:background="@color/itemBackground"
+            >
+            <TextView
+                android:id="@+id/ref"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/body_text_1"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="WH-IN/1809/056" />
+            <TextView
+                android:id="@+id/partner"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/default_4dp"
+                android:ellipsize="end"
+                android:gravity="end"
+                android:maxLines="1"
+                android:textColor="@color/body_text_1"
+                android:textSize="16sp"
+                tools:text="Dg Mappi Tana Toa" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/detail_other_notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/body_text_3"
+            android:textSize="10sp"
+            tools:text="DG LIRA" />
+    </LinearLayout>
+</LinearLayout>

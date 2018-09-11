@@ -144,6 +144,7 @@
     <!-- Sale activity -->
     <string name="sale_order_title">Sale Order List</string>
     <string name="detail_sale_line_activity_label">Sale Order Detail</string>
+    <string name="sale_menu_options_all">All</string>
     <string name="sale_menu_options_draft">Quotation</string>
     <string name="sale_menu_options_sale">Sales Order</string>
     <string name="sale_order_not_found">Sale Order Not Found</string>
@@ -165,4 +166,30 @@
     <string name="detail_sale_order_confirm_dialog">Are you sure you want to confirm this quotation?</string>
     <string name="detail_sale_order_confirm_success">Successfully confirmed the quotation</string>
     <string name="detail_sale_order_confirm_failed">Failed at confirming the quotation</string>
+
+    <!-- Stock activity -->
+    <string name="stock_picking_title">Stock Picking List</string>
+    <string name="detail_stock_detail_activity_label">Stock Picking Detail</string>
+    <string name="stock_picking_not_found">Stock Picking Not Found</string>
+    <string name="stock_picking_options_cakalang" translatable="false">Gudang Cakalang</string>
+    <string name="stock_picking_options_parangloe" translatable="false">Gudang Parangloe</string>
+    <string name="stock_picking_options_bs_cakalang" translatable="false">Gudang BS Cakalang</string>
+    <string name="stock_picking_options_bs_parangloe" translatable="false">Gudang BS Parangloe</string>
+    <string name="stock_picking_options_in">Receive</string>
+    <string name="stock_picking_options_int">Internal Transfer</string>
+    <string name="stock_picking_options_out">Delivery</string>
+    <string name="stock_picking_options_all">All</string>
+    <string name="stock_picking_options_not_done">Not Done</string>
+    <string name="stock_picking_options_waiting">Waiting Validation</string>
+    <string name="detail_stock_picking_state">State</string>
+    <string name="detail_stock_picking_type">Operation Types</string>
+    <string name="detail_stock_picking_origin">Source Document</string>
+    <string name="detail_stock_picking_operation">Operations</string>
+    <string name="detail_stock_picking_priority">Priority</string>
+    <string name="detail_stock_picking_location">Original Location</string>
+    <string name="detail_stock_picking_location_dest">Destination Location</string>
+    <string name="detail_stock_picking_validate_refuse">This stock picking is not waiting validation!</string>
+    <string name="detail_stock_picking_validate_dialog">Are you sure you want to validate this stock picking?</string>
+    <string name="detail_stock_picking_validate_success">Successfully validated the stock picking</string>
+    <string name="detail_stock_picking_validate_failed">Failed at validating the stock picking</string>
 </resources>

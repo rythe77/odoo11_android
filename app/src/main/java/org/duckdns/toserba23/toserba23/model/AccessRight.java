@@ -30,6 +30,8 @@ public class AccessRight implements Parcelable {
     public Boolean has_access_to_product = false;
     public Boolean has_access_to_sale = false;
     public Boolean has_access_to_sale_confirm = false;
+    public Boolean has_access_to_stock = false;
+    public Boolean has_access_to_stock_validate = false;
 
     /**
      * Main constructor of this class
@@ -69,6 +71,12 @@ public class AccessRight implements Parcelable {
         if ( group_sale_manager ) {
             has_access_to_sale_confirm = true;
         }
+        if ( group_stock_user ) {
+            has_access_to_stock = true;
+        }
+        if ( group_stock_manager ) {
+            has_access_to_stock_validate = true;
+        }
     }
 
     /**
@@ -84,12 +92,16 @@ public class AccessRight implements Parcelable {
         dest.writeValue(has_access_to_product);
         dest.writeValue(has_access_to_sale);
         dest.writeValue(has_access_to_sale_confirm);
+        dest.writeValue(has_access_to_stock);
+        dest.writeValue(has_access_to_stock_validate);
     }
 
     public AccessRight(Parcel P) {
         has_access_to_product = (Boolean) P.readValue( null );
         has_access_to_sale = (Boolean) P.readValue( null );
         has_access_to_sale_confirm = (Boolean) P.readValue( null );
+        has_access_to_stock = (Boolean) P.readValue(null);
+        has_access_to_stock_validate = (Boolean) P.readValue(null);
     }
 
     public static final Parcelable.Creator<AccessRight> CREATOR = new Parcelable.Creator<AccessRight>() {

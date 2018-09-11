@@ -17,6 +17,10 @@
                 android:id="@+id/sale"
                 android:icon="@drawable/ic_dollar"
                 android:title="@string/sale_menu" />
+            <item
+                android:id="@+id/stock"
+                android:icon="@drawable/ic_local_shipping"
+                android:title="@string/stock_string" />
         </menu>
     </item>
 

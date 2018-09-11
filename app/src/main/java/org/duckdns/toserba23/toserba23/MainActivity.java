@@ -27,6 +27,7 @@ import org.duckdns.toserba23.toserba23.fragment.Product;
 import org.duckdns.toserba23.toserba23.fragment.QRScanner;
 import org.duckdns.toserba23.toserba23.fragment.Sale;
 import org.duckdns.toserba23.toserba23.fragment.Settings;
+import org.duckdns.toserba23.toserba23.fragment.Stock;
 import org.duckdns.toserba23.toserba23.loader.AccessRightLoader;
 import org.duckdns.toserba23.toserba23.model.AccessRight;
 
@@ -171,6 +172,13 @@ public class MainActivity extends AppCompatActivity
             case R.id.sale:
                 if (mAccess != null & mAccess.has_access_to_sale) {
                     fragment = new Sale();
+                    break;
+                } else {
+                    Toast.makeText(MainActivity.this, R.string.no_access_right_error, Toast.LENGTH_LONG).show();
+                }
+            case R.id.stock:
+                if (mAccess != null & mAccess.has_access_to_stock) {
+                    fragment = new Stock();
                     break;
                 } else {
                     Toast.makeText(MainActivity.this, R.string.no_access_right_error, Toast.LENGTH_LONG).show();

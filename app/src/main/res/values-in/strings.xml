@@ -121,4 +121,25 @@
     <string name="detail_sale_order_confirm_refuse">Ini adalah order penjualan yang sudah dikonfirmasi!</string>
     <string name="detail_sale_order_confirm_success">Berhasil mengkonfirmasi penawaran</string>
     <string name="detail_sale_order_confirm_failed">Gagal mengkonfirmasi penawaran</string>
+    <string name="sale_menu_options_all">Semuanya</string>
+    <string name="stock_picking_title">Daftar Surat jalan</string>
+    <string name="stock_picking_not_found">Surat Jalan Tidak Ditemukan</string>
+    <string name="stock_picking_options_in">Penerimaan</string>
+    <string name="stock_picking_options_int">Transfer Internal</string>
+    <string name="stock_picking_options_out">Order Pengiriman</string>
+    <string name="stock_picking_options_all">Semua</string>
+    <string name="stock_picking_options_not_done">Belum Selesai</string>
+    <string name="stock_picking_options_waiting">Menunggu Validasi</string>
+    <string name="detail_stock_picking_state">Status</string>
+    <string name="detail_stock_picking_type">Tipe Operasi</string>
+    <string name="detail_stock_picking_origin">Dokumen Sumber</string>
+    <string name="detail_stock_picking_operation">Operasi</string>
+    <string name="detail_stock_picking_priority">Prioritas</string>
+    <string name="detail_stock_picking_location">Lokasi Sumber</string>
+    <string name="detail_stock_picking_location_dest">Lokasi Tujuan</string>
+    <string name="detail_stock_detail_activity_label">Detail Surat Jalan</string>
+    <string name="detail_stock_picking_validate_dialog">Apakah Anda yakin ingin memvalidasi surat jalan ini?</string>
+    <string name="detail_stock_picking_validate_refuse">Surat Jalan ini tidak sedang menunggu validasi!</string>
+    <string name="detail_stock_picking_validate_success">Berhasil memvalidasi surat jalan</string>
+    <string name="detail_stock_picking_validate_failed">Gagal memvalidasi surat jalan</string>
 </resources>

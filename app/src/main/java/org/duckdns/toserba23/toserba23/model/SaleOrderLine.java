@@ -160,7 +160,7 @@ public class SaleOrderLine {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                Log.e("StockPackOperation", "Problem parsing the JSON results", e);
+                Log.e("SaleOrderLine", "Problem parsing the JSON results", e);
             }
         }
         return saleOrderLines;

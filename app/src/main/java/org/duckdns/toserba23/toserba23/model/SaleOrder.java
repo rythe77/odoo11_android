@@ -274,7 +274,7 @@ public class SaleOrder {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                Log.e("ProductTemplate", "Problem parsing the JSON results", e);
+                Log.e("SaleOrder", "Problem parsing the JSON results", e);
             }
         }
         return saleOrders;

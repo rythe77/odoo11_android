@@ -10,6 +10,8 @@ import android.text.TextUtils;
 
 //import org.duckdns.toserba23.toserba23.R;
 
+import org.duckdns.toserba23.toserba23.R;
+
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -66,10 +68,20 @@ public final class DisplayFormatter {
         }
         return date;
     }
-    public static String formatDateTime(Date dateObject) {
-        if (dateObject!=null) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd LLL yyyy, kk:mm");
-            return dateFormat.format(dateObject);
+    public static String formatDateTime(String dateString) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+        Date date = null;
+        if (dateString!="false") {
+            try {
+                date = sdf.parse(dateString);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        if (date!=null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd LLL yyyy kk:mm");
+            return dateFormat.format(date);
         } else {
             return "";
         }
@@ -191,7 +203,7 @@ public final class DisplayFormatter {
      * Return the color ID matching the stock picking status. Use
      * ContextCompat.getColor(getActivity(), stateColorResourceId)
      * on the returned result to get the color ID
-     *
+     */
     public static int getStockPickingStateColor (String state) {
         int stateColorResourceId;
         switch (state) {
@@ -222,5 +234,4 @@ public final class DisplayFormatter {
         }
         return stateColorResourceId;
     }
-     */
 }

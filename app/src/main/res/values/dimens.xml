@@ -28,4 +28,9 @@
 
     <!-- SO list height on "add product to so" page-->
     <dimen name="so_list_height">200dp</dimen>
+
+    <!-- Stock picking page-->
+    <dimen name="dot_indicator_circle_size">18dp</dimen>
+    <dimen name="dot_indicator_circle_radius">9dp</dimen>
+    <dimen name="stock_move_qty_margin">30dp</dimen>
 </resources>

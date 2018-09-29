@@ -234,4 +234,25 @@ public final class DisplayFormatter {
         }
         return stateColorResourceId;
     }
+
+    /**
+     * Return the color ID matching the stock picking status. Use
+     * ContextCompat.getColor(getActivity(), stateColorResourceId)
+     * on the returned result to get the color ID
+     */
+    public static int getAttendanceStateColor (String state) {
+        int stateColorResourceId;
+        switch (state) {
+            case "checked_in":
+                stateColorResourceId = R.color.state_checked_in;
+                break;
+            case "checked_out":
+                stateColorResourceId = R.color.state_checked_out;
+                break;
+            default:
+                stateColorResourceId = R.color.state_checked_out;
+                break;
+        }
+        return stateColorResourceId;
+    }
 }

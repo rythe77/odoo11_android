@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_margin"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/inside_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/inside_margin"
+    android:paddingBottom="@dimen/activity_horizontal_margin"
+    android:background="@color/itemBackground"
+    >
+    <TextView
+        android:id="@+id/dot_indicator"
+        android:layout_width="@dimen/dot_indicator_circle_size"
+        android:layout_height="@dimen/dot_indicator_circle_size"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="@dimen/default_16dp"
+        android:background="@drawable/circle_state_color"
+        android:gravity="center" />
+    <TextView
+        android:id="@+id/employee"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/default_4dp"
+        android:ellipsize="end"
+        android:gravity="start"
+        android:maxLines="1"
+        android:textColor="@color/body_text_1"
+        android:textSize="16sp"
+        tools:text="Dg Mappi Tana Toa" />
+</LinearLayout>

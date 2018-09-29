@@ -35,4 +35,7 @@
     <color name="state_done">#808080</color>
     <!-- Additional status color for stock move -->
     <color name="state_cancel">#808080</color>
+    <!-- Attendance status color set -->
+    <color name="state_checked_out">#CC0000</color>
+    <color name="state_checked_in">#99CC00</color>
 </resources>

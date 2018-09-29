@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+    <item
+        android:id="@+id/show_preference_settings"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="@string/setting_string"/>
+
     <item android:title="@string/sale_string">
         <menu>
             <item
@@ -17,6 +22,11 @@
                 android:id="@+id/sale"
                 android:icon="@drawable/ic_dollar"
                 android:title="@string/sale_menu" />
+        </menu>
+    </item>
+
+    <item android:title="@string/stock_string">
+        <menu>
             <item
                 android:id="@+id/stock"
                 android:icon="@drawable/ic_local_shipping"
@@ -24,15 +34,14 @@
         </menu>
     </item>
 
-    <item android:title="@string/stock_string">
+    <item android:title="@string/attendance_string">
         <menu>
+            <item
+                android:id="@+id/attendance"
+                android:icon="@drawable/ic_people"
+                android:title="@string/attendance_scan_title" />
         </menu>
     </item>
-
-    <item
-        android:id="@+id/show_preference_settings"
-        android:icon="@drawable/ic_menu_manage"
-        android:title="@string/setting_string"/>
 
     <item android:title="@string/other_string">
         <menu>

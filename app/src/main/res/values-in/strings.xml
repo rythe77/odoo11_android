@@ -142,4 +142,10 @@
     <string name="detail_stock_picking_validate_refuse">Surat Jalan ini tidak sedang menunggu validasi!</string>
     <string name="detail_stock_picking_validate_success">Berhasil memvalidasi surat jalan</string>
     <string name="detail_stock_picking_validate_failed">Gagal memvalidasi surat jalan</string>
+    <string name="attendance_scan_title">Pindai Lencana Karyawan</string>
+    <string name="employee_multiple_scan_results">Beberapa karyawan memliki kode yang sama. Hubungi admin sistem Anda.</string>
+    <string name="error_employee_not_found">Karyawan Tidak Ditemukan</string>
+    <string name="error_failed_punching_attendance">!!! Gagal merekam absensi !!!</string>
+    <string name="punching_attendance_success">Berhasil merekam absensi</string>
+    <string name="attendance_list_title">Absensi Karyawan</string>
 </resources>

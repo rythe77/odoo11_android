@@ -41,6 +41,7 @@
     <string name="ok_string">OK</string>
     <string name="search_string">Search</string>
     <string name="setting_string">Setting</string>
+    <string name="attendance_string">Attendance</string>
     <string name="logout_confirm">Are you sure you want to logout?</string>
     <string name="no_access_right_error">You are not authorized to access the data. Contact your system administrator for more information.</string>
 
@@ -192,4 +193,12 @@
     <string name="detail_stock_picking_validate_dialog">Are you sure you want to validate this stock picking?</string>
     <string name="detail_stock_picking_validate_success">Successfully validated the stock picking</string>
     <string name="detail_stock_picking_validate_failed">Failed at validating the stock picking</string>
+
+    <!-- Product activity -->
+    <string name="punching_attendance_success">Attendance record success</string>
+    <string name="employee_multiple_scan_results">Multiple employee with the qr code found. Contact your system administrator for details.</string>
+    <string name="error_employee_not_found">Employee Not Found</string>
+    <string name="error_failed_punching_attendance">!!! Attendance record failed !!!</string>
+    <string name="attendance_list_title">Employee Attendance</string>
+    <string name="attendance_scan_title">Employee Badge Scan</string>
 </resources>

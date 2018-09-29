@@ -16,6 +16,7 @@ public class AccessRight implements Parcelable {
     private static final String GROUP_SALE_MANAGER = "Penjualan / Manajer";
     private static final String GROUP_STOCK_USER = "Persediaan / Pengguna";
     private static final String GROUP_STOCK_MANAGER = "Persediaan / Manajer";
+    private static final String ALLOW_BADGE_SCAN = "Akses Pindai Lencana";
 
     private ArrayList<String> mGroupList;
 
@@ -25,6 +26,7 @@ public class AccessRight implements Parcelable {
     private Boolean group_sale_manager = false;
     private Boolean group_stock_user = false;
     private Boolean group_stock_manager = false;
+    private Boolean allow_badge_scan = false;
 
     // Boolean value for access right check
     public Boolean has_access_to_product = false;
@@ -32,6 +34,7 @@ public class AccessRight implements Parcelable {
     public Boolean has_access_to_sale_confirm = false;
     public Boolean has_access_to_stock = false;
     public Boolean has_access_to_stock_validate = false;
+    public Boolean has_access_to_badge_scan = false;
 
     /**
      * Main constructor of this class
@@ -58,6 +61,9 @@ public class AccessRight implements Parcelable {
         } else if ( mGroupList.contains(GROUP_STOCK_USER) ) {
             group_stock_user = true;
         }
+        if (mGroupList.contains(ALLOW_BADGE_SCAN) ) {
+            allow_badge_scan = true;
+        }
         open_access_right();
     }
 
@@ -77,6 +83,9 @@ public class AccessRight implements Parcelable {
         if ( group_stock_manager ) {
             has_access_to_stock_validate = true;
         }
+        if ( allow_badge_scan ) {
+            has_access_to_badge_scan = true;
+        }
     }
 
     /**
@@ -94,6 +103,7 @@ public class AccessRight implements Parcelable {
         dest.writeValue(has_access_to_sale_confirm);
         dest.writeValue(has_access_to_stock);
         dest.writeValue(has_access_to_stock_validate);
+        dest.writeValue(has_access_to_badge_scan);
     }
 
     public AccessRight(Parcel P) {
@@ -102,6 +112,7 @@ public class AccessRight implements Parcelable {
         has_access_to_sale_confirm = (Boolean) P.readValue( null );
         has_access_to_stock = (Boolean) P.readValue(null);
         has_access_to_stock_validate = (Boolean) P.readValue(null);
+        has_access_to_badge_scan = (Boolean) P.readValue(null);
     }
 
     public static final Parcelable.Creator<AccessRight> CREATOR = new Parcelable.Creator<AccessRight>() {

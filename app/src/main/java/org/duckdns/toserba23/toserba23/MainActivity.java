@@ -23,6 +23,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.duckdns.toserba23.toserba23.fragment.AttendanceScanner;
 import org.duckdns.toserba23.toserba23.fragment.Product;
 import org.duckdns.toserba23.toserba23.fragment.QRScanner;
 import org.duckdns.toserba23.toserba23.fragment.Sale;
@@ -165,24 +166,31 @@ public class MainActivity extends AppCompatActivity
             case R.id.qr_scanner:
                 if (mAccess != null & mAccess.has_access_to_product) {
                     fragment = new QRScanner();
-                    break;
                 } else {
                     Toast.makeText(MainActivity.this, R.string.no_access_right_error, Toast.LENGTH_LONG).show();
                 }
+                break;
             case R.id.sale:
                 if (mAccess != null & mAccess.has_access_to_sale) {
                     fragment = new Sale();
-                    break;
                 } else {
                     Toast.makeText(MainActivity.this, R.string.no_access_right_error, Toast.LENGTH_LONG).show();
                 }
+                break;
             case R.id.stock:
                 if (mAccess != null & mAccess.has_access_to_stock) {
                     fragment = new Stock();
-                    break;
                 } else {
                     Toast.makeText(MainActivity.this, R.string.no_access_right_error, Toast.LENGTH_LONG).show();
                 }
+                break;
+            case R.id.attendance:
+                if (mAccess != null & mAccess.has_access_to_badge_scan) {
+                    fragment = new AttendanceScanner();
+                } else {
+                    Toast.makeText(MainActivity.this, R.string.no_access_right_error, Toast.LENGTH_LONG).show();
+                }
+                break;
             case R.id.show_preference_settings:
                 fragment = new Settings();
                 break;

@@ -141,7 +141,6 @@ public class QueryUtilsSaleOrder {
         // Confirm sale.order
         try {
             String jsonResponse = QueryUtils.makeXmlRpcRequest(url.get(2), "execute_kw", new Object[] {databaseName, userId, password, QueryUtils.SALE_ORDER, "action_confirm", Arrays.asList(id)});
-            Log.i(LOG_TAG, "Json response from server: ____________________________" + jsonResponse);
             // add success flag as createdIds item
             if (Boolean.parseBoolean(jsonResponse)) { createdIds.add(1);
             } else { createdIds.add(0);

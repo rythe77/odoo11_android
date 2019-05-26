@@ -13,9 +13,7 @@
         android:layout_height="match_parent"
         >
 
-        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <ScrollView
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -25,7 +23,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/inside_margin"
                 android:layout_marginBottom="@dimen/inside_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
@@ -68,6 +66,7 @@
                             tools:text="Tikar Eva Kembang Raksasa Bola-Bola" />
 
                         <LinearLayout
+                            android:baselineAligned="false"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -87,7 +86,7 @@
                                     android:paddingBottom="@dimen/default_4dp"
                                     android:fontFamily="@string/font_normal"
                                     android:textColor="@color/body_text_3"
-                                    android:gravity="left"
+                                    android:gravity="start"
                                     android:textSize="@dimen/text_size_small"
                                     android:text="@string/detail_product_category_string"
                                     tools:text="Category" />
@@ -98,7 +97,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@string/font_normal"
                                     android:textColor="@color/body_text_2"
-                                    android:gravity="left"
+                                    android:gravity="start"
                                     android:textSize="@dimen/text_size_medium"
                                     tools:text="Barang Plastik" />
                             </LinearLayout>
@@ -116,7 +115,7 @@
                                     android:paddingBottom="@dimen/default_4dp"
                                     android:fontFamily="@string/font_normal"
                                     android:textColor="@color/body_text_3"
-                                    android:gravity="right"
+                                    android:gravity="end"
                                     android:textSize="@dimen/text_size_small"
                                     android:text="@string/detail_product_uom_string"
                                     tools:text="UoM" />
@@ -127,13 +126,14 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@string/font_normal"
                                     android:textColor="@color/body_text_2"
-                                    android:gravity="right"
+                                    android:gravity="end"
                                     android:textSize="@dimen/text_size_medium"
                                     tools:text="Lembar" />
                             </LinearLayout>
                         </LinearLayout>
 
                         <LinearLayout
+                            android:baselineAligned="false"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -152,7 +152,7 @@
                                     android:paddingBottom="@dimen/default_4dp"
                                     android:fontFamily="@string/font_normal"
                                     android:textColor="@color/body_text_3"
-                                    android:gravity="left"
+                                    android:gravity="start"
                                     android:textSize="@dimen/text_size_small"
                                     android:text="@string/detail_product_qty_ckl_string"
                                     tools:text="Qty CKL" />
@@ -163,7 +163,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@string/font_normal"
                                     android:textColor="@color/body_text_2"
-                                    android:gravity="left"
+                                    android:gravity="start"
                                     android:textSize="@dimen/text_size_medium"
                                     tools:text="5" />
                             </LinearLayout>
@@ -181,7 +181,7 @@
                                     android:paddingBottom="@dimen/default_4dp"
                                     android:fontFamily="@string/font_normal"
                                     android:textColor="@color/body_text_3"
-                                    android:gravity="left"
+                                    android:gravity="start"
                                     android:textSize="@dimen/text_size_small"
                                     android:text="@string/detail_product_qty2_ckl_string"
                                     tools:text="Qty* CKL" />
@@ -192,7 +192,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@string/font_normal"
                                     android:textColor="@color/body_text_2"
-                                    android:gravity="left"
+                                    android:gravity="start"
                                     android:textSize="@dimen/text_size_medium"
                                     tools:text="7" />
                             </LinearLayout>
@@ -209,7 +209,7 @@
                                     android:paddingBottom="@dimen/default_4dp"
                                     android:fontFamily="@string/font_normal"
                                     android:textColor="@color/body_text_3"
-                                    android:gravity="right"
+                                    android:gravity="end"
                                     android:textSize="@dimen/text_size_small"
                                     android:text="@string/detail_product_qty_prl_string"
                                     tools:text="Qty PRL" />
@@ -220,7 +220,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@string/font_normal"
                                     android:textColor="@color/body_text_2"
-                                    android:gravity="right"
+                                    android:gravity="end"
                                     android:textSize="@dimen/text_size_medium"
                                     tools:text="5" />
                             </LinearLayout>
@@ -238,7 +238,7 @@
                                     android:paddingBottom="@dimen/default_4dp"
                                     android:fontFamily="@string/font_normal"
                                     android:textColor="@color/body_text_3"
-                                    android:gravity="right"
+                                    android:gravity="end"
                                     android:textSize="@dimen/text_size_small"
                                     android:text="@string/detail_product_qty2_prl_string"
                                     tools:text="Qty* PRL" />
@@ -249,9 +249,201 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@string/font_normal"
                                     android:textColor="@color/body_text_2"
-                                    android:gravity="right"
+                                    android:gravity="end"
                                     android:textSize="@dimen/text_size_medium"
                                     tools:text="7" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/default_8dp"
+                        android:layout_marginBottom="@dimen/default_8dp"
+                        android:background="@drawable/background_with_shadow" >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/default_8dp"
+                            android:fontFamily="@string/font_normal"
+                            android:textColor="@color/body_text_1"
+                            android:textStyle="bold"
+                            android:gravity="center_horizontal"
+                            android:textSize="@dimen/text_size_medium"
+                            android:text="@string/detail_product_price_display_section_string" />
+
+                        <LinearLayout
+                            android:baselineAligned="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:maxLines="1"
+                            >
+
+                            <LinearLayout
+                                android:layout_height="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:maxLines="1"
+                                >
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@string/font_normal"
+                                    android:maxLines="1"
+                                    android:textColor="@color/body_text_2"
+                                    android:textSize="@dimen/text_size_medium"
+                                    android:text="@string/detail_product_display_price_harga_jual"
+                                    tools:text="Harga Jual" />
+
+                                <TextView
+                                    android:id="@+id/detail_harga_jual"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="@dimen/default_8dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:textColor="@color/body_text_1"
+                                    android:textSize="@dimen/text_size_medium"
+                                    tools:text="Rp 0,00" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@string/font_normal"
+                                    android:maxLines="1"
+                                    android:textColor="@color/body_text_2"
+                                    android:textSize="@dimen/text_size_medium"
+                                    android:text="@string/detail_product_display_price_harga_grosir"
+                                    tools:text="Harga Grosir" />
+
+                                <TextView
+                                    android:id="@+id/detail_harga_grosir"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="@dimen/default_8dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:textColor="@color/body_text_1"
+                                    android:textSize="@dimen/text_size_medium"
+                                    tools:text="Rp 0,00" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@string/font_normal"
+                                    android:maxLines="1"
+                                    android:textColor="@color/body_text_2"
+                                    android:textSize="@dimen/text_size_medium"
+                                    android:text="@string/detail_product_display_price_harga_toko"
+                                    tools:text="Harga Toko" />
+
+                                <TextView
+                                    android:id="@+id/detail_harga_toko"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="@dimen/default_8dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:textColor="@color/body_text_1"
+                                    android:textSize="@dimen/text_size_medium"
+                                    tools:text="Rp 0,00" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@string/font_normal"
+                                    android:maxLines="1"
+                                    android:textColor="@color/body_text_2"
+                                    android:textSize="@dimen/text_size_medium"
+                                    android:text="@string/detail_product_display_price_harga_bulukumba"
+                                    tools:text="Harga Bulukumba" />
+
+                                <TextView
+                                    android:id="@+id/detail_harga_bulukumba"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="@dimen/default_8dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:textColor="@color/body_text_1"
+                                    android:textSize="@dimen/text_size_medium"
+                                    tools:text="Rp 0,00" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@string/font_normal"
+                                    android:maxLines="1"
+                                    android:textColor="@color/body_text_2"
+                                    android:textSize="@dimen/text_size_medium"
+                                    android:text="@string/detail_product_display_price_harga_bulukumbas"
+                                    tools:text="Harga Bulukumbas" />
+
+                                <TextView
+                                    android:id="@+id/detail_harga_bulukumbas"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="@dimen/default_8dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:textColor="@color/body_text_1"
+                                    android:textSize="@dimen/text_size_medium"
+                                    tools:text="Rp 0,00" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_height="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:maxLines="1"
+                                >
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@string/font_normal"
+                                    android:maxLines="1"
+                                    android:textColor="@color/body_text_2"
+                                    android:textSize="@dimen/text_size_medium"
+                                    android:text="@string/detail_product_display_price_harga_promo"
+                                    tools:text="Harga Promo" />
+
+                                <TextView
+                                    android:id="@+id/detail_harga_promo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="@dimen/default_8dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:textColor="@color/body_text_1"
+                                    android:textSize="@dimen/text_size_medium"
+                                    tools:text="Rp 0,00" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@string/font_normal"
+                                    android:maxLines="1"
+                                    android:textColor="@color/body_text_2"
+                                    android:textSize="@dimen/text_size_medium"
+                                    android:text="@string/detail_product_display_price_promo_cash"
+                                    tools:text="Promo Cash" />
+
+                                <TextView
+                                    android:id="@+id/detail_promo_cash"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="@dimen/default_8dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:textColor="@color/body_text_1"
+                                    android:textSize="@dimen/text_size_medium"
+                                    tools:text="Rp 0,00" />
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>

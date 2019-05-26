@@ -158,34 +158,6 @@ public class ProductDetail extends AppCompatActivity {
         }
     }
 
-    /**
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.product_template_detail_options, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to a click on the "Insert dummy data" menu option
-            case R.id.add_to_sale_order:
-                if (mAccess != null & mAccess.has_access_to_product) {
-                    if (mDefPartnerName != null) {
-                        load_related_so();
-                    } else {
-                        Toast.makeText(ProductDetail.this, R.string.error_no_default_partner, Toast.LENGTH_LONG).show();
-                    }
-                } else {
-                    Toast.makeText(ProductDetail.this, R.string.no_access_right_error, Toast.LENGTH_LONG).show();
-                }
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    */
-
     public void load_related_so() {
         // Get a reference to the ConnectivityManager to check state of network connectivity
         ConnectivityManager connMgr = (ConnectivityManager)
@@ -209,9 +181,6 @@ public class ProductDetail extends AppCompatActivity {
 
     /**
      * Setup Loader behavior here
-     * @param i id of the called loader
-     * @param bundle
-     * @return
      */
     private LoaderManager.LoaderCallbacks<ProductTemplate> loadProductTemplateFromServerListener = new LoaderManager.LoaderCallbacks<ProductTemplate>() {
         @Override
@@ -253,6 +222,13 @@ public class ProductDetail extends AppCompatActivity {
             ((TextView) findViewById(R.id.detail_qty2_ckl)).setText(DisplayFormatter.formatQuantity(productTemplate.getProductProduct().getQtyForecastCKL()));
             ((TextView) findViewById(R.id.detail_qty_prl)).setText(DisplayFormatter.formatQuantity(productTemplate.getProductProduct().getQtyPRL()));
             ((TextView) findViewById(R.id.detail_qty2_prl)).setText(DisplayFormatter.formatQuantity(productTemplate.getProductProduct().getQtyForecastPRL()));
+            ((TextView) findViewById(R.id.detail_harga_jual)).setText(DisplayFormatter.formatCurrency(productTemplate.getHargaJual()));
+            ((TextView) findViewById(R.id.detail_harga_grosir)).setText(DisplayFormatter.formatCurrency(productTemplate.getHargaGrosir()));
+            ((TextView) findViewById(R.id.detail_harga_toko)).setText(DisplayFormatter.formatCurrency(productTemplate.getHargaToko()));
+            ((TextView) findViewById(R.id.detail_harga_bulukumba)).setText(DisplayFormatter.formatCurrency(productTemplate.getHargaBulukumba()));
+            ((TextView) findViewById(R.id.detail_harga_bulukumbas)).setText(DisplayFormatter.formatCurrency(productTemplate.getHargaBulukumbas()));
+            ((TextView) findViewById(R.id.detail_harga_promo)).setText(DisplayFormatter.formatCurrency(productTemplate.getHargaPromo()));
+            ((TextView) findViewById(R.id.detail_promo_cash)).setText(DisplayFormatter.formatCurrency(productTemplate.getPromoCash()));
 
             // Prepare linear layout view which will contain inflated product row view
             LayoutInflater internalInflater = LayoutInflater.from(getApplicationContext());

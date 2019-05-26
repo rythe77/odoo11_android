@@ -121,6 +121,14 @@
     <string name="detail_product_qty2_ckl_string">Qty* CKL</string>
     <string name="detail_product_qty_prl_string">Qty PRL</string>
     <string name="detail_product_qty2_prl_string">Qty* PRL</string>
+    <string name="detail_product_price_display_section_string">Display Price</string>
+    <string name="detail_product_display_price_harga_jual">Harga Jual</string>
+    <string name="detail_product_display_price_harga_grosir">Harga Grosir</string>
+    <string name="detail_product_display_price_harga_toko">Harga Toko</string>
+    <string name="detail_product_display_price_harga_bulukumba">Harga Bulukumba</string>
+    <string name="detail_product_display_price_harga_bulukumbas">Harga Bulukumba S</string>
+    <string name="detail_product_display_price_harga_promo">Harga Promo</string>
+    <string name="detail_product_display_price_promo_cash">Promo Cash</string>
     <string name="detail_product_pricelist_section_string">Pricelist</string>
     <string name="detail_product_pricelist_min_string">Min. Qty</string>
     <string name="detail_product_pricelist_notes_string">Notes</string>

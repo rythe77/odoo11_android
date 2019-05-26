@@ -148,4 +148,13 @@
     <string name="error_failed_punching_attendance">!!! Gagal merekam absensi !!!</string>
     <string name="punching_attendance_success">Berhasil merekam absensi</string>
     <string name="attendance_list_title">Absensi Karyawan</string>
+    <string name="detail_product_price_display_section_string">Harga Display</string>
+    <string name="detail_product_display_price_harga_bulukumba">Harga Bulukumba</string>
+    <string name="detail_product_display_price_harga_bulukumbas">Harga Bulukumba S</string>
+    <string name="detail_product_display_price_harga_grosir">Harga Grosir</string>
+    <string name="detail_product_display_price_harga_jual">Harga Jual</string>
+    <string name="detail_product_display_price_harga_promo">Harga Promo</string>
+    <string name="detail_product_display_price_harga_toko">Harga Toko</string>
+    <string name="detail_product_display_price_promo_cash">Promo Cash</string>
+    <string name="attendance_string">Absensi</string>
 </resources>

@@ -29,7 +29,6 @@ public class ProductPricelistItem {
 
     /**
      * Series of get method
-     * @return
      */
     public int getId() { return mId; }
     public void setProduct(GenericModel product) { mProduct = product; }
@@ -61,7 +60,6 @@ public class ProductPricelistItem {
     /**
      * hashmap of fields
      * should be used to limit returned fields when querying Odoo server
-     * @return
      */
     public static HashMap<String,Arrays> getProductPricelistItemFields() {
         HashMap map = new HashMap();
@@ -69,7 +67,7 @@ public class ProductPricelistItem {
                 "id",
                 "product_tmpl_id",
                 "pricelist_id",
-                "fixed_price",
+                "x_formula_price",
                 "min_quantity",
                 "x_notes",
                 "date_start",
@@ -80,8 +78,8 @@ public class ProductPricelistItem {
 
     /**
      * Parse jsonresponse from Odoo server and return it as ArrayList of object
-     * @param jsonResponse
-     * @return
+     * @param jsonResponse jsonResponse from Odoo server
+     * @return arraylist of product pricelist item
      */
     public static ArrayList<ProductPricelistItem> parseJson(String jsonResponse) {
         ArrayList<ProductPricelistItem> productPricelistItems = new ArrayList<>();

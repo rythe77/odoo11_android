@@ -16,7 +16,7 @@ public class AccessRight implements Parcelable {
     private static final String GROUP_SALE_MANAGER = "Penjualan / Manajer";
     private static final String GROUP_STOCK_USER = "Persediaan / Pengguna";
     private static final String GROUP_STOCK_MANAGER = "Persediaan / Manajer";
-    private static final String ALLOW_BADGE_SCAN = "Akses Pindai Lencana";
+    private static final String ALLOW_BADGE_SCAN = "Pembukaan Akses / Akses Pindai Lencana";
 
     private ArrayList<String> mGroupList;
 

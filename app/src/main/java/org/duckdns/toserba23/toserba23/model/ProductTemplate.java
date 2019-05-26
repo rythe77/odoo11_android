@@ -26,32 +26,51 @@ public class ProductTemplate {
     private ArrayList<ProductPricelistItem> mProductPricelistItem;
     private ProductProduct mProductProduct;
     private String mImage;
+    private int mHargaJual;
+    private int mHargaGrosir;
+    private int mHargaToko;
+    private int mHargaBulukumba;
+    private int mHargaBulukumbas;
+    private int mHargaPromo;
+    private int mPromoCash;
 
     /**
      * Series of get method
-     * @return
      */
     public int getId() { return mId; }
     public String getRef() { return mRef; }
     public String getName() { return mName; }
     public double getQty() { return mQty; }
     public double getQtyForecast() { return mQtyForecast; }
-    public void setProductCategory(GenericModel category) { mCategory = category; }
+    private void setProductCategory(GenericModel category) { mCategory = category; }
     public GenericModel getProductCategory() {
         return mCategory;
     }
     public int getProductCategoryId() {return mCategory!=null?mCategory.getId():0;}
-    public void setProductUom(GenericModel uom) { mUnit = uom; }
+    private void setProductUom(GenericModel uom) { mUnit = uom; }
     public GenericModel getProductUom() {
         return mUnit;
     }
     public int getProductUomId() {return mUnit!=null?mUnit.getId():0;}
-    public void setImage(String image) { mImage = image; }
+    private void setImage(String image) { mImage = image; }
     public String getImage() { return mImage; }
+    private void setHargaJual(int hargaJual) { mHargaJual = hargaJual; }
+    public int getHargaJual() { return mHargaJual; }
+    private void setHargaGrosir(int hargaGrosir) { mHargaGrosir = hargaGrosir; }
+    public int getHargaGrosir() { return mHargaGrosir; }
+    private void setHargaToko(int hargaToko) { mHargaToko = hargaToko; }
+    public int getHargaToko() { return mHargaToko; }
+    private void setHargaBulukumba(int hargaBulukumba) { mHargaBulukumba = hargaBulukumba; }
+    public int getHargaBulukumba() { return mHargaBulukumba; }
+    private void setHargaBulukumbas(int hargaBulukumbas) { mHargaBulukumbas = hargaBulukumbas; }
+    public int getHargaBulukumbas() { return mHargaBulukumbas; }
+    private void setHargaPromo(int hargaPromo) { mHargaPromo = hargaPromo; }
+    public int getHargaPromo() { return mHargaPromo; }
+    private void setPromoCash(int promoCash) { mPromoCash = promoCash; }
+    public int getPromoCash() { return mPromoCash; }
 
     /**
      * Series of set and get method for linked fields
-     * @return
      */
     public void setProductPricelistItem(ArrayList<ProductPricelistItem> productPricelistItems) {mProductPricelistItem = productPricelistItems;}
     public ArrayList<ProductPricelistItem> getProductPricelistItem() { return mProductPricelistItem; }
@@ -85,7 +104,6 @@ public class ProductTemplate {
     /**
      * hashmap of the fields
      * should be used to limit returned fields when querying Odoo server
-     * @return
      */
     public static HashMap<String,Arrays> getProductTemplateBulkFields() {
         HashMap map = new HashMap();
@@ -101,7 +119,6 @@ public class ProductTemplate {
     /**
      * hashmap of detail fields
      * should be used to limit returned fields when querying Odoo server
-     * @return
      */
     public static HashMap<String,Arrays> getProductTemplateDetailFields() {
         HashMap map = new HashMap();
@@ -113,15 +130,22 @@ public class ProductTemplate {
                 "virtual_available",
                 "categ_id",
                 "uom_id",
-                "image_medium"
+                "image_medium",
+                "x_harga_jual",
+                "x_harga_grosir",
+                "x_harga_toko",
+                "x_harga_bulukumba",
+                "x_harga_bulukumbas",
+                "x_harga_promo",
+                "x_promo_cash"
         ));
         return map;
     }
 
     /**
      * Parse jsonresponse from Odoo server and return it as ArrayList of ResPartner object
-     * @param jsonResponse
-     * @return
+     * @param jsonResponse jsonResponse from Odoo server
+     * @return arraylist of product template
      */
     public static ArrayList<ProductTemplate> parseJson(String jsonResponse) {
         ArrayList<ProductTemplate> productTemplates = new ArrayList<>();
@@ -164,6 +188,34 @@ public class ProductTemplate {
                     if (field.has(fieldProductTemplate.get(7))) {
                         String image = field.optString(fieldProductTemplate.get(7));
                         productTemplates.get(j).setImage(image);
+                    }
+                    if (field.has(fieldProductTemplate.get(8))) {
+                        int hargaJual = field.optInt(fieldProductTemplate.get(8));
+                        productTemplates.get(j).setHargaJual(hargaJual);
+                    }
+                    if (field.has(fieldProductTemplate.get(9))) {
+                        int hargaGrosir = field.optInt(fieldProductTemplate.get(9));
+                        productTemplates.get(j).setHargaGrosir(hargaGrosir);
+                    }
+                    if (field.has(fieldProductTemplate.get(10))) {
+                        int hargaToko = field.optInt(fieldProductTemplate.get(10));
+                        productTemplates.get(j).setHargaToko(hargaToko);
+                    }
+                    if (field.has(fieldProductTemplate.get(11))) {
+                        int hargaBulukumba = field.optInt(fieldProductTemplate.get(11));
+                        productTemplates.get(j).setHargaBulukumba(hargaBulukumba);
+                    }
+                    if (field.has(fieldProductTemplate.get(12))) {
+                        int hargaBulukumbas = field.optInt(fieldProductTemplate.get(12));
+                        productTemplates.get(j).setHargaBulukumbas(hargaBulukumbas);
+                    }
+                    if (field.has(fieldProductTemplate.get(13))) {
+                        int hargaPromo = field.optInt(fieldProductTemplate.get(13));
+                        productTemplates.get(j).setHargaPromo(hargaPromo);
+                    }
+                    if (field.has(fieldProductTemplate.get(14))) {
+                        int promoCash = field.optInt(fieldProductTemplate.get(14));
+                        productTemplates.get(j).setPromoCash(promoCash);
                     }
                 }
             } catch (JSONException e) {

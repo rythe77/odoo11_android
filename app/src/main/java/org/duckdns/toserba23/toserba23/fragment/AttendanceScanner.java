@@ -1,5 +1,6 @@
 package org.duckdns.toserba23.toserba23.fragment;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Fragment;
@@ -7,8 +8,11 @@ import android.app.LoaderManager;
 import android.content.DialogInterface;
 import android.content.Loader;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -50,6 +54,7 @@ public class AttendanceScanner extends Fragment implements ZXingScannerView.Resu
     private static final int FETCH_EMPLOYEE_LOADER_ID = 1;
     private static final int PUNCH_ATTENDANCE_RECORD_ID = 2;
     private static final int FETCH_EMPLOYEE_ATTENDANCE_LOADER_ID = 3;
+    private static final int MY_CAMERA_REQUEST_CODE = 100;
 
     private SharedPreferences mPref;
     private int PRIVATE_MODE = 0;
@@ -81,6 +86,10 @@ public class AttendanceScanner extends Fragment implements ZXingScannerView.Resu
         mDatabaseName = mPref.getString(getString(R.string.settings_database_name__key), null);
         mUserId = mPref.getInt(getString(R.string.settings_user_id_key), 0);
         mPassword = mPref.getString(getString(R.string.settings_password_key), null);
+
+        // Ask for camera permission
+        if (ContextCompat.checkSelfPermission(this.getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED)
+            ActivityCompat.requestPermissions(this.getActivity(), new String[] {Manifest.permission.CAMERA}, MY_CAMERA_REQUEST_CODE);
 
         mScannerView = new ZXingScannerView(getActivity());
         return mScannerView;

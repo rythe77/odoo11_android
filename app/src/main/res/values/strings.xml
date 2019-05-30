@@ -53,6 +53,7 @@
     <string name="product_string_offline">Product-Pricelist(Offline)</string>
     <string name="qr_scanner_menu">QR Scanner</string>
     <string name="sale_menu">Sales Order</string>
+    <string name="partner_string">Partner</string>
     <string name="stock_string">Inventory</string>
     <string name="other_string">Others</string>
     <string name="offline_mode_string">To Offline Mode</string>
@@ -175,6 +176,32 @@
     <string name="detail_sale_order_confirm_dialog">Are you sure you want to confirm this quotation?</string>
     <string name="detail_sale_order_confirm_success">Successfully confirmed the quotation</string>
     <string name="detail_sale_order_confirm_failed">Failed at confirming the quotation</string>
+
+    <!-- Partner activity -->
+    <string name="res_partner_title">Partner List</string>
+    <string name="detail_res_partner_title">Partner Detail</string>
+    <string name="res_partner_not_found">Partner Not Found</string>
+    <string name="detail_res_partner_address">Address</string>
+    <string name="detail_res_partner_phone">Phone</string>
+    <string name="detail_res_partner_email">Email</string>
+    <string name="detail_res_partner_mobile">Mobile</string>
+    <string name="detail_res_partner_other_info">Other Info</string>
+    <string name="detail_res_partner_pricelist">Pricelist</string>
+    <string name="detail_res_partner_trust">Trust</string>
+    <string name="detail_res_partner_payment_term">Payment Term</string>
+    <string name="detail_res_partner_comment">Notes</string>
+    <string name="detail_res_partner_credit">Receivable</string>
+    <string name="detail_res_partner_credit_limit">Receivable Limit</string>
+    <string name="detail_res_partner_set_dialog">Are you sure you want to set this partner as default?</string>
+    <string name="detail_res_partner_send_email_dialog">Are you sure you want to send email to this partner?</string>
+    <string name="detail_res_partner_email_not_valid">Email address is not valid</string>
+    <string name="detail_res_partner_send_email_chooser_dialog">Please choose an app to send email</string>
+    <string name="detail_res_partner_call_dialog">Are you sure you want to call this partner landline number?</string>
+    <string name="detail_res_partner_phone_not_valid">Phone number is not valid</string>
+    <string name="detail_res_partner_choose_action_dialog">Choose an appropriate action below</string>
+    <string name="detail_res_partner_call">Call</string>
+    <string name="detail_res_partner_SMS">SMS</string>
+    <string name="detail_res_partner_WA">Whatsapp</string>
 
     <!-- Stock activity -->
     <string name="stock_picking_title">Stock Picking List</string>

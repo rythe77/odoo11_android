@@ -53,6 +53,11 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
+            android:name=".fragment.PartnerDetail"
+            android:label="@string/detail_res_partner_title"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
             android:name=".fragment.StockDetail"
             android:label="@string/detail_stock_detail_activity_label"
             android:theme="@style/AppTheme.NoActionBar">

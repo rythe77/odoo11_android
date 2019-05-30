@@ -239,7 +239,6 @@ public final class QueryUtils {
      * @param databaseName name of the database to be queried
      * @param userId
      * @param password
-     * @param filter only query interesting record
      * @param model name of the model to be queried
      * @param map map of fields to be retrieved
      * @return json response string
@@ -361,7 +360,7 @@ public final class QueryUtils {
             Object responseObject = client.call(command, params);
             jsonResponse = gson.toJson(responseObject);
 
-            //Log.i(LOG_TAG, "Json response from server: " + jsonResponse);
+            Log.v(LOG_TAG, "Json response from server: " + jsonResponse);
         } catch(XMLRPCServerException e) {
             e.printStackTrace();
             Log.e(LOG_TAG, "Problem connecting server XML-RPC", e);

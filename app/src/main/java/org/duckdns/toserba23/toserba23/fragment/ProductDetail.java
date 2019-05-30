@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Loader;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -48,6 +51,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+
+import de.timroes.base64.Base64;
 
 /**
  * Created by ryanto on 24/02/18.
@@ -213,6 +218,14 @@ public class ProductDetail extends AppCompatActivity {
         // If there is a valid list of {@link stock picking}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
         if (productTemplate != null) {
+            // Display image if available
+            String imgStr64 = productTemplate.getImage();
+            if (imgStr64 != "false") {
+                byte[] decodedImg = Base64.decode(imgStr64);
+                Bitmap decodedByteImg = BitmapFactory.decodeByteArray(decodedImg, 0, decodedImg.length);
+                ((ImageView) findViewById(R.id.detail_image_view)).setImageBitmap(decodedByteImg);
+                (findViewById(R.id.detail_image_container)).setVisibility(View.VISIBLE);
+            }
             // Display detailed view header document
             ((TextView) findViewById(R.id.detail_code)).setText(productTemplate.getRef());
             ((TextView) findViewById(R.id.detail_name)).setText(productTemplate.getName());

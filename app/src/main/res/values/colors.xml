@@ -13,6 +13,7 @@
     <color name="text_secondary_light">#60000000</color>
     <color name="text_inverse">#deffffff</color>
     <color name="text_accent">#FF5722</color>
+    <color name="text_linked">#0645AD</color>
     <!-- Background color for app -->
     <color name="headerBackground">#D68080</color>
     <color name="searchBackground">#D68080</color>

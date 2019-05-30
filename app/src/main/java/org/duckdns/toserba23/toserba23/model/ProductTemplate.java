@@ -130,7 +130,7 @@ public class ProductTemplate {
                 "virtual_available",
                 "categ_id",
                 "uom_id",
-                "image_medium",
+                "image",
                 "x_harga_jual",
                 "x_harga_grosir",
                 "x_harga_toko",

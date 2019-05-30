@@ -32,6 +32,7 @@ public class AccessRight implements Parcelable {
     public Boolean has_access_to_product = false;
     public Boolean has_access_to_sale = false;
     public Boolean has_access_to_sale_confirm = false;
+    public Boolean has_access_to_customer = false;
     public Boolean has_access_to_stock = false;
     public Boolean has_access_to_stock_validate = false;
     public Boolean has_access_to_badge_scan = false;
@@ -73,6 +74,7 @@ public class AccessRight implements Parcelable {
         }
         if ( group_sale_salesman ) {
             has_access_to_sale = true;
+            has_access_to_customer = true;
         }
         if ( group_sale_manager ) {
             has_access_to_sale_confirm = true;
@@ -101,6 +103,7 @@ public class AccessRight implements Parcelable {
         dest.writeValue(has_access_to_product);
         dest.writeValue(has_access_to_sale);
         dest.writeValue(has_access_to_sale_confirm);
+        dest.writeValue(has_access_to_customer);
         dest.writeValue(has_access_to_stock);
         dest.writeValue(has_access_to_stock_validate);
         dest.writeValue(has_access_to_badge_scan);
@@ -110,6 +113,7 @@ public class AccessRight implements Parcelable {
         has_access_to_product = (Boolean) P.readValue( null );
         has_access_to_sale = (Boolean) P.readValue( null );
         has_access_to_sale_confirm = (Boolean) P.readValue( null );
+        has_access_to_customer = (Boolean) P.readValue( null );
         has_access_to_stock = (Boolean) P.readValue(null);
         has_access_to_stock_validate = (Boolean) P.readValue(null);
         has_access_to_badge_scan = (Boolean) P.readValue(null);

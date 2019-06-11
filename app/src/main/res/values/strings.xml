@@ -122,6 +122,7 @@
     <string name="detail_product_qty2_ckl_string">Qty* CKL</string>
     <string name="detail_product_qty_prl_string">Qty PRL</string>
     <string name="detail_product_qty2_prl_string">Qty* PRL</string>
+    <string name="detail_product_description_section_string">Description</string>
     <string name="detail_product_price_display_section_string">Display Price</string>
     <string name="detail_product_display_price_harga_jual">Harga Jual</string>
     <string name="detail_product_display_price_harga_grosir">Harga Grosir</string>

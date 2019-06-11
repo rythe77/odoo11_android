@@ -33,6 +33,7 @@ public class ProductTemplate {
     private int mHargaBulukumbas;
     private int mHargaPromo;
     private int mPromoCash;
+    private String mDescription;
 
     /**
      * Series of get method
@@ -68,6 +69,8 @@ public class ProductTemplate {
     public int getHargaPromo() { return mHargaPromo; }
     private void setPromoCash(int promoCash) { mPromoCash = promoCash; }
     public int getPromoCash() { return mPromoCash; }
+    private void setDescription(String description) { mDescription = description; }
+    public String getDescription() { return mDescription; }
 
     /**
      * Series of set and get method for linked fields
@@ -137,7 +140,8 @@ public class ProductTemplate {
                 "x_harga_bulukumba",
                 "x_harga_bulukumbas",
                 "x_harga_promo",
-                "x_promo_cash"
+                "x_promo_cash",
+                "description"
         ));
         return map;
     }
@@ -216,6 +220,10 @@ public class ProductTemplate {
                     if (field.has(fieldProductTemplate.get(14))) {
                         int promoCash = field.optInt(fieldProductTemplate.get(14));
                         productTemplates.get(j).setPromoCash(promoCash);
+                    }
+                    if (field.has(fieldProductTemplate.get(15))) {
+                        String description = field.optString(fieldProductTemplate.get(15));
+                        productTemplates.get(j).setDescription(description);
                     }
                 }
             } catch (JSONException e) {

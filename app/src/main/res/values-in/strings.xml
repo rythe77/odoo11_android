@@ -182,4 +182,5 @@
     <string name="detail_res_partner_SMS">SMS</string>
     <string name="detail_res_partner_WA">Whatsapp</string>
     <string name="detail_res_partner_call">Telepon</string>
+    <string name="detail_product_description_section_string">Deskripsi</string>
 </resources>

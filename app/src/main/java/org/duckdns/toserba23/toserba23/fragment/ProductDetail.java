@@ -226,6 +226,12 @@ public class ProductDetail extends AppCompatActivity {
                 ((ImageView) findViewById(R.id.detail_image_view)).setImageBitmap(decodedByteImg);
                 (findViewById(R.id.detail_image_container)).setVisibility(View.VISIBLE);
             }
+            // Display description if available
+            String description = productTemplate.getDescription();
+            if (description != "false" && !description.isEmpty()) {
+                ((TextView) findViewById(R.id.detail_description)).setText(description);
+                (findViewById(R.id.detail_description_container)).setVisibility(View.VISIBLE);
+            }
             // Display detailed view header document
             ((TextView) findViewById(R.id.detail_code)).setText(productTemplate.getRef());
             ((TextView) findViewById(R.id.detail_name)).setText(productTemplate.getName());

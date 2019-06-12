@@ -176,10 +176,6 @@ public class ProductDetail extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        // Ask for camera permission
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED)
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_REQUEST_CODE);
-
         if (item.getTitle() == getString(R.string.detail_product_save_image_dialog)) {
             String imgStr64 = mProductTemplate.getImage();
             if (imgStr64 != "false") {
@@ -192,6 +188,10 @@ public class ProductDetail extends AppCompatActivity {
     }
 
     private File saveImage(Bitmap finalBitmap, String image_name) {
+        // Ask for external storage permission
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED)
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_REQUEST_CODE);
+
         String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
         File myDir = new File(root);
         if (!myDir.exists()) myDir.mkdirs();

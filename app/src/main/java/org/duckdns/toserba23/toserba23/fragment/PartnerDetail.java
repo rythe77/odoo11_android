@@ -185,7 +185,11 @@ public class PartnerDetail extends AppCompatActivity {
                                         case 2:
                                             Intent WAIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + phone_number));
                                             WAIntent.setPackage("com.whatsapp");
-                                            startActivity(WAIntent);
+                                            try {
+                                                startActivity(WAIntent);
+                                            } catch (android.content.ActivityNotFoundException ex) {
+                                                Toast.makeText(PartnerDetail.this, getString(R.string.detail_res_partner_whatsapp_not_installed), Toast.LENGTH_SHORT).show();
+                                            }
                                             break;
                                         case 3:
                                             break;

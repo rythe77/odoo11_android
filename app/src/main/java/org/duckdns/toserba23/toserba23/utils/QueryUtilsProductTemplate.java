@@ -1,5 +1,11 @@
 package org.duckdns.toserba23.toserba23.utils;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.view.View;
+import android.widget.ImageView;
+
+import org.duckdns.toserba23.toserba23.R;
 import org.duckdns.toserba23.toserba23.model.ProductPricelistItem;
 import org.duckdns.toserba23.toserba23.model.ProductProduct;
 import org.duckdns.toserba23.toserba23.model.ProductTemplate;
@@ -8,6 +14,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+
+import de.timroes.base64.Base64;
 
 import static org.duckdns.toserba23.toserba23.utils.QueryUtils.*;
 
@@ -69,47 +77,65 @@ public class QueryUtilsProductTemplate {
             productTemplate = productTemplates.get(0);
         }
 
-        // Get pricelist records
-        ArrayList<ProductPricelistItem> productPricelistItems = null;
-        HashMap fieldsProductPricelistItemMap = ProductPricelistItem.getProductPricelistItemFields();
-        fieldsProductPricelistItemMap.put("order", "pricelist_id asc");
-        //Create filter for pricelist related to the above product template
-        Object[] filter = new Object[] {
-                new Object[] {
-                        new Object[] {"product_tmpl_id", "=", productTemplate.getName()},
-                }
-        };
-        try {
-            String jsonResponses2 = searchReadRpcRequest(url.get(2), databaseName, userId, password, PRODUCT_PRICELIST, filter, fieldsProductPricelistItemMap);
-            productPricelistItems = ProductPricelistItem.parseJson(jsonResponses2);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        productTemplate.setProductPricelistItem(productPricelistItems);
+        if (productTemplate!=null) {
+            // Get pricelist records
+            ArrayList<ProductPricelistItem> productPricelistItems = null;
+            HashMap fieldsProductPricelistItemMap = ProductPricelistItem.getProductPricelistItemFields();
+            fieldsProductPricelistItemMap.put("order", "pricelist_id asc");
+            //Create filter for pricelist related to the above product template
+            Object[] filter = new Object[]{
+                    new Object[]{
+                            new Object[]{"product_tmpl_id", "=", productTemplate.getName()},
+                    }
+            };
+            try {
+                String jsonResponses2 = searchReadRpcRequest(url.get(2), databaseName, userId, password, PRODUCT_PRICELIST, filter, fieldsProductPricelistItemMap);
+                productPricelistItems = ProductPricelistItem.parseJson(jsonResponses2);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            productTemplate.setProductPricelistItem(productPricelistItems);
 
-        // Get data for a the related product product
-        // After fetching product product data, set it as related to the original product template
-        ArrayList<ProductProduct> productProducts = null;
-        HashMap fieldsProductProductMap = ProductProduct.getProductProductFields();
-        //Create filter for product product related to the above product template
-        Object[] filter3 = new Object[] {
-                new Object[] {
-                        new Object[] {"name", "=", productTemplate.getName()},
-                }
-        };
-        try {
-            String jsonResponses3 = searchReadRpcRequest(url.get(2), databaseName, userId, password, PRODUCT_PRODUCT, filter3, fieldsProductProductMap);
-            productProducts = ProductProduct.parseJson(jsonResponses3);
-        } catch (Exception e) {
-            e.printStackTrace();
+            // Get data for a the related product product
+            // After fetching product product data, set it as related to the original product template
+            ArrayList<ProductProduct> productProducts = null;
+            HashMap fieldsProductProductMap = ProductProduct.getProductProductFields();
+            //Create filter for product product related to the above product template
+            Object[] filter3 = new Object[]{
+                    new Object[]{
+                            new Object[]{"name", "=", productTemplate.getName()},
+                    }
+            };
+            try {
+                String jsonResponses3 = searchReadRpcRequest(url.get(2), databaseName, userId, password, PRODUCT_PRODUCT, filter3, fieldsProductProductMap);
+                productProducts = ProductProduct.parseJson(jsonResponses3);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            // Because the data is only a single record, take only the first element from array list
+            ProductProduct productProduct = null;
+            if (productProducts != null && !productProducts.isEmpty()) {
+                productProduct = productProducts.get(0);
+            }
+            productTemplate.setProductProduct(productProduct);
         }
-        // Because the data is only a single record, take only the first element from array list
-        ProductProduct productProduct = null;
-        if(productProducts!=null && !productProducts.isEmpty()){
-            productProduct = productProducts.get(0);
-        }
-        productTemplate.setProductProduct(productProduct);
 
         return productTemplate;
+    }
+
+    public static String fetchProductTemplateImage(String requestUrl, String databaseName, int userId, String password, int itemId) {
+        // Create URL object
+        ArrayList<URL> url = createUrl(requestUrl);
+
+        String imgStr64 = "false";
+        HashMap fieldsProductTemplateImageMap = ProductTemplate.getProductTemplateImageFields();
+        try {
+            String jsonResponse = readRpcRequest(url.get(2), databaseName, userId, password, PRODUCT_TEMPLATE, itemId, fieldsProductTemplateImageMap);
+            imgStr64 = ProductTemplate.parseJsonImage(jsonResponse);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return imgStr64;
     }
 }

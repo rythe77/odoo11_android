@@ -53,7 +53,7 @@ public class ProductTemplate {
         return mUnit;
     }
     public int getProductUomId() {return mUnit!=null?mUnit.getId():0;}
-    private void setImage(String image) { mImage = image; }
+    public void setImage(String image) { mImage = image; }
     public String getImage() { return mImage; }
     private void setHargaJual(int hargaJual) { mHargaJual = hargaJual; }
     public int getHargaJual() { return mHargaJual; }
@@ -133,7 +133,7 @@ public class ProductTemplate {
                 "virtual_available",
                 "categ_id",
                 "uom_id",
-                "image",
+                "image_medium",
                 "x_harga_jual",
                 "x_harga_grosir",
                 "x_harga_toko",
@@ -142,6 +142,17 @@ public class ProductTemplate {
                 "x_harga_promo",
                 "x_promo_cash",
                 "description"
+        ));
+        return map;
+    }
+
+    /**
+     * hashmap of for highres image fields
+     */
+    public static HashMap<String,Arrays> getProductTemplateImageFields() {
+        HashMap map = new HashMap();
+        map.put("fields", Arrays.asList(
+                "image"
         ));
         return map;
     }
@@ -232,5 +243,31 @@ public class ProductTemplate {
             }
         }
         return productTemplates;
+    }
+
+    /**
+     * Parse jsonresponse from Odoo server and return it as ArrayList of ResPartner object
+     * @param jsonResponse jsonResponse from Odoo server
+     * @return arraylist of product template
+     */
+    public static String parseJsonImage(String jsonResponse) {
+        String image = "false";
+        List<String> fieldProductTemplate = (List<String>) getProductTemplateImageFields().get("fields");
+        if (jsonResponse!=null) {
+            try {
+                JSONArray fields = new JSONArray(jsonResponse);
+                for (int j = 0; j < fields.length(); j++) {
+                    JSONObject field = fields.optJSONObject(j);
+
+                    if (field.has(fieldProductTemplate.get(0))) {
+                        image = field.optString(fieldProductTemplate.get(0));
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Log.e("ProductTemplate", "Problem parsing the JSON results", e);
+            }
+        }
+        return image;
     }
 }

@@ -22,10 +22,12 @@
     <color name="itemDetailBackground">#fafafa</color>
     <color name="base_chatter_view_background">#f3f3f3</color>
     <color name="base_chatter_view_note_background">#dadada</color>
+    <color name="base_chatter_view_note_background_transparent">#aadadada</color>
     <color name="base_document_background">#eee9e9</color>
     <color name="base_button_default_background">#8b8989</color>
     <color name="divider">#BDBDBD</color>
     <color name="black_divider">#de000000</color>
+    <color name="whatsapp_green">#4FCE5D</color>
     <!-- Stock picking status color set -->
     <color name="state_draft">#0099CC</color>
     <color name="state_waiting">#AA66CC</color>

@@ -183,4 +183,11 @@
     <string name="detail_res_partner_WA">Whatsapp</string>
     <string name="detail_res_partner_call">Telepon</string>
     <string name="detail_product_description_section_string">Deskripsi</string>
+    <string name="detail_product_save_image_dialog">Simpan Gambar</string>
+    <string name="detail_product_save_image_directory_name">Produk Toserba 23</string>
+    <string name="detail_product_save_image_confirmation">Gambar Tersimpan</string>
+    <string name="detail_res_partner_whatsapp_not_installed">Whatsapp belum terpasang</string>
+    <string name="detail_product_description_string">Deskripsi</string>
+    <string name="detail_product_image_string">Gambar</string>
+    <string name="detail_product_send_wa_dialog_title">Pilih info tambahan untuk dikirim</string>
 </resources>

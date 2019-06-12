@@ -45,13 +45,29 @@
                         android:background="@drawable/background_with_shadow"
                         android:visibility="gone"
                         >
-                        <ImageView
-                            android:id="@+id/detail_image_view"
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:adjustViewBounds="true"
-                            />
+                            android:background="@color/theme_primary_background"
+                            >
+                            <ImageView
+                                android:id="@+id/detail_image_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:adjustViewBounds="true"
+                                />
+                            <ProgressBar
+                                android:id="@+id/image_loading_spinner"
+                                style="@style/Widget.AppCompat.ProgressBar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignTop="@+id/detail_image_view"
+                                android:layout_alignBottom="@+id/detail_image_view"
+                                android:layout_centerInParent="true"
+                                android:background="@color/base_chatter_view_note_background_transparent"
+                                android:visibility="gone"/>
+                        </RelativeLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -501,7 +517,6 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="@dimen/default_8dp"
-                        android:layout_marginBottom="32dp"
                         android:background="@drawable/background_with_shadow" >
 
                         <TextView
@@ -522,6 +537,19 @@
                         </LinearLayout>
 
                     </LinearLayout>
+                    <TextView
+                        android:id="@+id/whatsapp"
+                        android:layout_width="@dimen/item_margin"
+                        android:layout_height="@dimen/item_margin"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/default_4dp"
+                        android:padding="@dimen/default_4dp"
+                        android:background="@drawable/rounded_corner"
+                        android:drawableTop="@drawable/ic_phone"
+                        android:text="WA"
+                        android:textAlignment="center"
+                        android:textColor="@color/text_inverse"
+                        />
                 </LinearLayout>
 
                 <!-- Empty view is only visible when the list has no items. -->

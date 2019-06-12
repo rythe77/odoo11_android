@@ -144,6 +144,12 @@
     <string name="error_no_default_partner">Please provide default partner from the setting page</string>
     <string name="detail_product_options_add_so_success">Adding product success!</string>
     <string name="detail_product_options_add_so_failed">Failed adding product!</string>
+    <string name="detail_product_save_image_dialog">Save Image</string>
+    <string name="detail_product_save_image_directory_name">Toserba 23 Products</string>
+    <string name="detail_product_save_image_confirmation">Image Saved</string>
+    <string name="detail_product_send_wa_dialog_title">Choose additional info to send</string>
+    <string name="detail_product_description_string">Description</string>
+    <string name="detail_product_image_string">Image</string>
 
     <!-- QR Scanner activity -->
     <string name="qr_scan_title">Product QR Scan</string>
@@ -203,6 +209,7 @@
     <string name="detail_res_partner_call">Call</string>
     <string name="detail_res_partner_SMS">SMS</string>
     <string name="detail_res_partner_WA">Whatsapp</string>
+    <string name="detail_res_partner_whatsapp_not_installed">Whatsapp have not been installed</string>
 
     <!-- Stock activity -->
     <string name="stock_picking_title">Stock Picking List</string>

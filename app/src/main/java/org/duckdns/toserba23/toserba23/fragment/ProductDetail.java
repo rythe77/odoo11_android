@@ -1,19 +1,31 @@
 package org.duckdns.toserba23.toserba23.fragment;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.LoaderManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.PhoneNumberUtils;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -44,7 +56,10 @@ import org.duckdns.toserba23.toserba23.model.SaleOrderLine;
 import org.duckdns.toserba23.toserba23.utils.DisplayFormatter;
 import org.duckdns.toserba23.toserba23.utils.QueryUtils;
 import org.duckdns.toserba23.toserba23.utils.QueryUtilsAccessRight;
+import org.duckdns.toserba23.toserba23.utils.QueryUtilsProductTemplate;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -65,6 +80,7 @@ public class ProductDetail extends AppCompatActivity {
     private static final int FETCH_STOCK_WAREHOUSE_LOADER_ID = 3;
     private static final int SAVE_SALES_ORDER_LOADER_ID = 4;
     private static final int SAVE_SALES_ORDER_LINE_LOADER_ID = 5;
+    private static final int STORAGE_REQUEST_CODE = 200;
 
     private SaleOrderAdapter mAdapter;
     private ProductTemplate mProductTemplate;
@@ -127,12 +143,71 @@ public class ProductDetail extends AppCompatActivity {
             }
         });
 
+        LinearLayout imageContainer = findViewById(R.id.detail_image_container);
+        registerForContextMenu(imageContainer);
+        imageContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                load_highres_image();
+            }
+        });
+
+        TextView whatsapp = findViewById(R.id.whatsapp);
+        whatsapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                send_whatsapp_dialog();
+            }
+        });
+
         // Set pricelist container view
         mPricelistViewContainer = (LinearLayout) findViewById(R.id.container_view);
 
         mAdapter = new SaleOrderAdapter(ProductDetail.this, new ArrayList<SaleOrder>());
 
         readData();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(0, v.getId(), 0, getString(R.string.detail_product_save_image_dialog));
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        // Ask for camera permission
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED)
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_REQUEST_CODE);
+
+        if (item.getTitle() == getString(R.string.detail_product_save_image_dialog)) {
+            String imgStr64 = mProductTemplate.getImage();
+            if (imgStr64 != "false") {
+                byte[] decodedImg = Base64.decode(imgStr64);
+                Bitmap decodedByteImg = BitmapFactory.decodeByteArray(decodedImg, 0, decodedImg.length);
+                saveImage(decodedByteImg, mProductTemplate.getName());
+            }
+        }
+        return true;
+    }
+
+    private File saveImage(Bitmap finalBitmap, String image_name) {
+        String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+        File myDir = new File(root);
+        if (!myDir.exists()) myDir.mkdirs();
+        String fname = "Image_" + image_name+ ".png";
+        File file = new File(myDir, fname);
+        if (file.exists()) file.delete();
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            finalBitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Toast.makeText(this, getString(R.string.detail_product_save_image_confirmation), Toast.LENGTH_SHORT).show();
+        return file;
     }
 
     public void readData() {
@@ -182,6 +257,76 @@ public class ProductDetail extends AppCompatActivity {
             // Otherwise, display error
             Toast.makeText(this, R.string.error_no_internet_connection, Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void load_highres_image() {
+        // Get a reference to the ConnectivityManager to check state of network connectivity
+        ConnectivityManager connMgr = (ConnectivityManager)
+                this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        // Get details on the currently active default data network
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        // If there is a network connection, fetch data
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Run asynctaskloader to get the highres image
+            new DownloadImageTask().execute(mProductTmplId);
+        } else {
+            // Otherwise, display error
+            Toast.makeText(this, R.string.error_no_internet_connection, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void send_whatsapp_dialog() {
+        final ArrayList selectedItems = new ArrayList();
+        AlertDialog.Builder builder = new AlertDialog.Builder(ProductDetail.this);
+        String[] choice_array = new String[] {getString(R.string.detail_product_description_string), getString(R.string.detail_product_image_string)};
+        builder.setTitle(getString(R.string.detail_product_send_wa_dialog_title))
+                .setMultiChoiceItems(choice_array, null, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i, boolean isChecked) {
+                        if (isChecked) {
+                            selectedItems.add(i);
+                        } else if (selectedItems.contains(i)) {
+                            selectedItems.remove(Integer.valueOf(i));
+                        }
+                    }
+                }).setPositiveButton(R.string.ok_string, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent WAIntent = new Intent(Intent.ACTION_SEND);
+                        WAIntent.setType("text/plain");
+                        WAIntent.setPackage("com.whatsapp");
+                        String name = "";
+                        if (mProductTemplate!=null && !mProductTemplate.getName().isEmpty() && mProductTemplate.getName() != "false") {
+                            name = mProductTemplate.getName();
+                        }
+                        String description = "";
+                        if (selectedItems.contains(0) && mProductTemplate!=null && !mProductTemplate.getDescription().isEmpty() && mProductTemplate.getDescription() != "false") {
+                            description = "\n\n" + mProductTemplate.getDescription();
+                        }
+                        String message = name + description;
+                        WAIntent.putExtra(Intent.EXTRA_TEXT, message);
+                        if (selectedItems.contains(1) && mProductTemplate!=null && !mProductTemplate.getImage().isEmpty() && mProductTemplate.getImage() != "false") {
+                            String imgStr64 = mProductTemplate.getImage();
+                            byte[] decodedImg = Base64.decode(imgStr64);
+                            Bitmap decodedByteImg = BitmapFactory.decodeByteArray(decodedImg, 0, decodedImg.length);
+                            File imageFile = saveImage(decodedByteImg, mProductTemplate.getName());
+                            Uri imgUri = Uri.parse(imageFile.getAbsolutePath());
+                            WAIntent.putExtra(Intent.EXTRA_STREAM, imgUri);
+                            WAIntent.setType("image/png");
+                        }
+                        try {
+                            startActivity(WAIntent);
+                        } catch (android.content.ActivityNotFoundException ex) {
+                            Toast.makeText(ProductDetail.this, getString(R.string.detail_res_partner_whatsapp_not_installed), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).setNegativeButton(R.string.cancel_string, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                }).show();
     }
 
     /**
@@ -490,4 +635,27 @@ public class ProductDetail extends AppCompatActivity {
         public void onLoaderReset(Loader<List<Integer>> loader) {
         }
     };
+
+    private class DownloadImageTask extends AsyncTask<Integer, Void, String> {
+        protected void onPreExecute(){
+            (findViewById(R.id.image_loading_spinner)).setVisibility(View.VISIBLE);
+        }
+        protected String doInBackground(Integer... productTemplateIds) {
+            String imgStr64 = "false";
+            for (int i = 0; i < productTemplateIds.length; i++) {
+                imgStr64 = QueryUtilsProductTemplate.fetchProductTemplateImage(mUrl, mDatabaseName, mUserId, mPassword, productTemplateIds[i]);
+            }
+            return imgStr64;
+        }
+        protected  void onPostExecute(String result) {
+            // Display image if available
+            if (result != "false") {
+                mProductTemplate.setImage(result);
+                byte[] decodedImg = Base64.decode(result);
+                Bitmap decodedByteImg = BitmapFactory.decodeByteArray(decodedImg, 0, decodedImg.length);
+                ((ImageView) findViewById(R.id.detail_image_view)).setImageBitmap(decodedByteImg);
+            }
+            (findViewById(R.id.image_loading_spinner)).setVisibility(View.GONE);
+        }
+    }
 }

@@ -53,6 +53,7 @@ import org.duckdns.toserba23.toserba23.model.ProductPricelistItem;
 import org.duckdns.toserba23.toserba23.model.ProductTemplate;
 import org.duckdns.toserba23.toserba23.model.SaleOrder;
 import org.duckdns.toserba23.toserba23.model.SaleOrderLine;
+import org.duckdns.toserba23.toserba23.utils.AppUtils;
 import org.duckdns.toserba23.toserba23.utils.DisplayFormatter;
 import org.duckdns.toserba23.toserba23.utils.QueryUtils;
 import org.duckdns.toserba23.toserba23.utils.QueryUtilsAccessRight;
@@ -296,7 +297,14 @@ public class ProductDetail extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent WAIntent = new Intent(Intent.ACTION_SEND);
                         WAIntent.setType("text/plain");
-                        WAIntent.setPackage("com.whatsapp");
+                        //check whether whatsapp is installed
+                        String packageName = "";
+                        if (AppUtils.isAppInstalled(ProductDetail.this, "com.whatsapp")) {
+                            packageName = "com.whatsapp";
+                        } else {
+                            packageName = "com.whatsapp.w4b";
+                        }
+                        WAIntent.setPackage(packageName);
                         String name = "";
                         if (mProductTemplate!=null && !mProductTemplate.getName().isEmpty() && mProductTemplate.getName() != "false") {
                             name = mProductTemplate.getName();

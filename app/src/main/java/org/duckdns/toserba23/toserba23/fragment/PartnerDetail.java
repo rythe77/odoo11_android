@@ -24,6 +24,7 @@ import org.duckdns.toserba23.toserba23.R;
 import org.duckdns.toserba23.toserba23.loader.ResPartnerDetailLoader;
 import org.duckdns.toserba23.toserba23.model.AccessRight;
 import org.duckdns.toserba23.toserba23.model.ResPartner;
+import org.duckdns.toserba23.toserba23.utils.AppUtils;
 import org.duckdns.toserba23.toserba23.utils.DisplayFormatter;
 import org.duckdns.toserba23.toserba23.utils.QueryUtilsAccessRight;
 
@@ -184,7 +185,14 @@ public class PartnerDetail extends AppCompatActivity {
                                             break;
                                         case 2:
                                             Intent WAIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + phone_number));
-                                            WAIntent.setPackage("com.whatsapp");
+                                            //check whether whatsapp is installed
+                                            String packageName = "";
+                                            if (AppUtils.isAppInstalled(PartnerDetail.this, "com.whatsapp")) {
+                                                packageName = "com.whatsapp";
+                                            } else {
+                                                packageName = "com.whatsapp.w4b";
+                                            }
+                                            WAIntent.setPackage(packageName);
                                             try {
                                                 startActivity(WAIntent);
                                             } catch (android.content.ActivityNotFoundException ex) {

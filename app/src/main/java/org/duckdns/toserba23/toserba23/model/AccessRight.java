@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 public class AccessRight implements Parcelable {
     // Group names
-    private static final String GROUP_SALE_SALESMAN = "Penjualan / User: Own Documents Only";
-    private static final String GROUP_SALE_SALESMAN_ALL_LEADS = "Penjualan / User: All Documents";
+    private static final String GROUP_SALE_SALESMAN = "Penjualan / Pengguna: Hanya Dokumen Milik Sendiri";
+    private static final String GROUP_SALE_SALESMAN_ALL_LEADS = "Penjualan / Pengguna: Semua Dokumen";
     private static final String GROUP_SALE_MANAGER = "Penjualan / Manajer";
     private static final String GROUP_STOCK_USER = "Persediaan / Pengguna";
     private static final String GROUP_STOCK_MANAGER = "Persediaan / Manajer";

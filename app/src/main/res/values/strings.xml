@@ -237,11 +237,13 @@
     <string name="detail_stock_picking_validate_success">Successfully validated the stock picking</string>
     <string name="detail_stock_picking_validate_failed">Failed at validating the stock picking</string>
 
-    <!-- Product activity -->
+    <!-- Attendance activity -->
     <string name="punching_attendance_success">Attendance record success</string>
     <string name="employee_multiple_scan_results">Multiple employee with the qr code found. Contact your system administrator for details.</string>
     <string name="error_employee_not_found">Employee Not Found</string>
     <string name="error_failed_punching_attendance">!!! Attendance record failed !!!</string>
     <string name="attendance_list_title">Employee Attendance</string>
     <string name="attendance_scan_title">Employee Badge Scan</string>
+    <string name="scan_failed">Failed!!!</string>
+    <string name="scan_success">Success</string>
 </resources>

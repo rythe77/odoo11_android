@@ -190,4 +190,6 @@
     <string name="detail_product_description_string">Deskripsi</string>
     <string name="detail_product_image_string">Gambar</string>
     <string name="detail_product_send_wa_dialog_title">Pilih info tambahan untuk dikirim</string>
+    <string name="scan_failed">Gagal!!!</string>
+    <string name="scan_success">Berhasil</string>
 </resources>

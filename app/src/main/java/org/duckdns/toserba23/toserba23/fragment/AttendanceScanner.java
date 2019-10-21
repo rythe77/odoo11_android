@@ -127,10 +127,15 @@ public class AttendanceScanner extends Fragment implements ZXingScannerView.Resu
         getLoaderManager().restartLoader(FETCH_EMPLOYEE_LOADER_ID, null, loadEmployeeFromServerListener);
     }
 
-    public void showMessageDialog(String message) {
+    public void showMessageDialog(String title, String message, Boolean error) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(getString(R.string.scan_result_title));
+        builder.setTitle(title);
         builder.setMessage(message);
+        if (error) {
+            builder.setIcon(R.drawable.ic_error_red);
+        } else {
+            builder.setIcon(R.drawable.ic_success);
+        }
         AlertDialog alert1 = builder.create();
         alert1.show();
     }
@@ -178,10 +183,11 @@ public class AttendanceScanner extends Fragment implements ZXingScannerView.Resu
                 getLoaderManager().destroyLoader(FETCH_EMPLOYEE_LOADER_ID);
                 punchAttendance();
             } else if (mEmployee != null && !mEmployee.isEmpty() && mEmployee.size() != 1) {
-                // Multiple products found for the current qr code, create dialog windows to let user choose which to see
-                Toast.makeText(getActivity(), R.string.employee_multiple_scan_results, Toast.LENGTH_LONG).show();
+                // Multiple employees found for the current qr code
+                showMessageDialog(getString(R.string.scan_failed), getString(R.string.employee_multiple_scan_results), Boolean.TRUE);
+                restartCamera();
             } else {
-                showMessageDialog(getString(R.string.error_employee_not_found));
+                showMessageDialog(getString(R.string.scan_failed), getString(R.string.error_employee_not_found), Boolean.TRUE);
                 restartCamera();
             }
         }
@@ -209,10 +215,9 @@ public class AttendanceScanner extends Fragment implements ZXingScannerView.Resu
         @Override
         public void onLoadFinished(Loader<Boolean> loader, Boolean aBoolean) {
             if (aBoolean) {
-                Toast.makeText(getActivity(), R.string.punching_attendance_success, Toast.LENGTH_LONG).show();
-                viewAttendance();
+                showMessageDialog(getString(R.string.scan_success), getString(R.string.punching_attendance_success), Boolean.FALSE);
             } else {
-                showMessageDialog(getString(R.string.error_failed_punching_attendance));
+                showMessageDialog(getString(R.string.scan_failed), getString(R.string.error_failed_punching_attendance), Boolean.TRUE);
             }
             getLoaderManager().destroyLoader(PUNCH_ATTENDANCE_RECORD_ID);
             restartCamera();

@@ -196,12 +196,12 @@ public class ProductDetail extends AppCompatActivity {
         String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
         File myDir = new File(root);
         if (!myDir.exists()) myDir.mkdirs();
-        String fname = "Image_" + image_name+ ".png";
+        String fname = "Image_" + image_name.replace("/", "_") + ".jpg";
         File file = new File(myDir, fname);
         if (file.exists()) file.delete();
         try {
             FileOutputStream out = new FileOutputStream(file);
-            finalBitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
             out.flush();
             out.close();
         } catch (Exception e) {
@@ -479,7 +479,7 @@ public class ProductDetail extends AppCompatActivity {
                 int soId = mAdapter.getItem(i).getId();
                 mOrderLineToSave = new SaleOrderLine(
                         0,
-                        new GenericModel(mProductTemplate.getId(), mProductTemplate.getName()),
+                        new GenericModel(mProductTemplate.getProductProduct().getId(), mProductTemplate.getProductProduct().getName()),
                         notesView.getText().toString(),
                         Integer.parseInt(qtyView.getText().toString()),
                         soId
@@ -513,7 +513,7 @@ public class ProductDetail extends AppCompatActivity {
             public void onClick(View view) {
                 mOrderLineToSave = new SaleOrderLine(
                         0,
-                        new GenericModel(mProductTemplate.getId(), mProductTemplate.getName()),
+                        new GenericModel(mProductTemplate.getProductProduct().getId(), mProductTemplate.getProductProduct().getName()),
                         notesView.getText().toString(),
                         Integer.parseInt(qtyView.getText().toString()),
                         0

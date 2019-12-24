@@ -74,7 +74,7 @@ public class QueryUtilsAttendance {
     }
 
     /**
-     * Query the Odoo server for stock picking list.
+     * Query the Odoo server for employee list.
      */
     public static ArrayList<HrEmployee> searchReadHrEmployeeList(String requestUrl, String databaseName, final int userId, String password, Object[] filter, int limit, int offsetCounter) {
         // Create URL object

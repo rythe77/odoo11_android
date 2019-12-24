@@ -23,7 +23,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.duckdns.toserba23.toserba23.fragment.AttendanceScanner;
+import org.duckdns.toserba23.toserba23.fragment.Attendance;
 import org.duckdns.toserba23.toserba23.fragment.Partner;
 import org.duckdns.toserba23.toserba23.fragment.Product;
 import org.duckdns.toserba23.toserba23.fragment.QRScanner;
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.attendance:
                 if (mAccess != null & mAccess.has_access_to_badge_scan) {
-                    fragment = new AttendanceScanner();
+                    fragment = new Attendance();
                 } else {
                     Toast.makeText(MainActivity.this, R.string.no_access_right_error, Toast.LENGTH_LONG).show();
                 }

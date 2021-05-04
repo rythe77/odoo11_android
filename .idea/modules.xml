@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/odoo11_android.iml" filepath="$PROJECT_DIR$/odoo11_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/odoo11_android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/odoo11_android.app.iml" />
     </modules>
   </component>
 </project>

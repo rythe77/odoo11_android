@@ -89,6 +89,10 @@ public class MainActivity extends AppCompatActivity
         View header=navigationView.getHeaderView(0);
         ((TextView)header.findViewById(R.id.email)).setText(mUsermail);
 
+        // Get app version
+        String versionName = BuildConfig.VERSION_NAME;
+        ((TextView)header.findViewById(R.id.appv)).setText("Toserba 23 v" + versionName);
+
         // Get access right data from server
         mAccessRightFilterElements.clear();
         mAccessRightFilterElements.add(new Object[] {"users", "=", mUserId});

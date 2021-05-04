@@ -192,4 +192,16 @@
     <string name="detail_product_send_wa_dialog_title">Pilih info tambahan untuk dikirim</string>
     <string name="scan_failed">Gagal!!!</string>
     <string name="scan_success">Berhasil</string>
+    <string name="error_service_disabled_title">Layanan Tidak Aktif</string>
+    <string name="error_service_disabled_body">Layanan lokasi saat ini tidak aktif. Anda harus mengaktifkan layanan lokasi di perangkat Anda untuk menggunakan fungsi pindai absensi.</string>
+    <string name="error_location_title">Eror Lokasi</string>
+    <string name="error_location_body1">Tidak dapat memperoleh lokasi saat ini. Mohon pindah ke area yang lebih terbuka dan dicoba sekali lagi.</string>
+    <string name="error_location_body2">Tidak dapat memperoleh data lokasi dari server. Mohon restart aplikasi ini atau kontak admin sistem jika sudah mencoba restart.</string>
+    <string name="error_location_body3">Tidak dapat memperoleh data lokasi dari pengaturan. Mohon restart aplikasi ini atau kontak admin sistem jika sudah mencoba restart.</string>
+    <string name="error_invalid_data_title">Data Tidak Sah</string>
+    <string name="error_invalid_data_body">Data koordinat tidak sah. Kontak admin sistem dengan pesan eror ini.</string>
+    <string name="error_not_allowed_title">Tidak Diijinkan</string>
+    <string name="error_not_allowed_body">Pindai absensi tidak diijinkan di lokasi ini. Kontak admin sistem dengan pesan eror ini.</string>
+    <string name="error_mock_provider_title">Peringatan</string>
+    <string name="error_mock_provider_body">Anda menggunakan pemalsu lokasi. Matikan pemalsu lokasi tersebut untuk memasukkan absensi secara jujur.</string>
 </resources>

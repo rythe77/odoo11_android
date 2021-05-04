@@ -9,8 +9,10 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import org.duckdns.toserba23.toserba23.model.ResPartner;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -92,6 +94,79 @@ public final class QueryUtils {
             e.printStackTrace();
         }
         return databaseList;
+    }
+
+    /**
+     * Get current user allowed location. Return list with 2 data. 1st is latitude, 2nd is longitude
+     */
+    public static ArrayList<Double> getLocation(String requestUrl, String databaseName, final int userId, String password) {
+        // Create URL object
+        ArrayList<URL> url = createUrl(requestUrl);
+
+        // Create container for results
+        ArrayList<Double> location = new ArrayList<>();
+
+        // Get fields
+        HashMap fieldsMap = new HashMap();
+        fieldsMap.put("fields", Arrays.asList(
+                "partner_id"
+        ));
+
+        // Get related partner id
+        int resPartnerId = 0;
+        try {
+            String jsonResponse = readRpcRequest(url.get(2), databaseName, userId, password, RES_USERS, userId, fieldsMap);
+            // Parse json response
+            if(jsonResponse!=null) {
+                try {
+                    JSONArray results = new JSONArray(jsonResponse);
+                    for (int i = 0; i < results.length(); i++) {
+                        JSONObject result = results.optJSONObject(i);
+                        JSONArray partner_id = result.optJSONArray("partner_id");
+                        if (partner_id!=null) {
+                            resPartnerId = partner_id.optInt(0, 0);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.e("QueryUtils", "Problem parsing the databases JSON results", e);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Get allowed location based on partner id
+        HashMap locFieldMap = new HashMap();
+        locFieldMap.put("fields", Arrays.asList(
+                "partner_latitude",
+                "partner_longitude"
+        ));
+        if (resPartnerId != 0) {
+            try {
+                String jsonResponse = readRpcRequest(url.get(2), databaseName, userId, password, RES_PARTNER, resPartnerId, locFieldMap);
+                // Parse json response
+                if(jsonResponse!=null) {
+                    try {
+                        JSONArray results = new JSONArray(jsonResponse);
+                        for (int i = 0; i < results.length(); i++) {
+                            JSONObject result = results.optJSONObject(i);
+                            Double latitude = result.optDouble("partner_latitude", 0);
+                            Double longitude = result.optDouble("partner_longitude", 0);
+                            location.add(latitude);
+                            location.add(longitude);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Log.e("QueryUtils", "Problem parsing the databases JSON results", e);
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return location;
     }
 
     /**

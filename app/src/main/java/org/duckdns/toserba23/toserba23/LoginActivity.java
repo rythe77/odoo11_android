@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.duckdns.toserba23.toserba23.loader.LoginLoader;
+import org.duckdns.toserba23.toserba23.loader.ResUserGetLocationLoader;
 import org.duckdns.toserba23.toserba23.utils.QueryUtils;
 
 import java.util.ArrayList;
@@ -51,6 +52,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private int PRIVATE_MODE = 0;
 
     private static final int LOGIN_LOADER_ID = 1;
+    private static final int GET_LOCATION_LOADER_ID = 2;
     private LoaderManager loginLoaderManager = getLoaderManager();
 
     // Setup the listener for loader to fetch data from remote server
@@ -86,10 +88,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 // Update progres bar view
                 mLoginProcessStatus.setText(getString(R.string.status_login_success));
 
-                // Transfer intent to main activity
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                // Get user allowed location
+                loginLoaderManager.initLoader(GET_LOCATION_LOADER_ID, null, getLocationLoaderListener);
             } else {
                 if ( mAutoLogin ) {
                     mAutoLogin = false;
@@ -115,6 +115,40 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         @Override
         public void onLoaderReset(Loader<Integer> loader) {
+        }
+    };
+
+    private LoaderManager.LoaderCallbacks<List<Double>> getLocationLoaderListener = new LoaderManager.LoaderCallbacks<List<Double>>() {
+        @Override
+        public Loader<List<Double>> onCreateLoader(int i, Bundle bundle) {
+            String url = mPref.getString(getString(R.string.settings_url_key), null);
+            String databasename = mPref.getString(getString(R.string.settings_database_name__key), null);
+            int userId = mPref.getInt(getString(R.string.settings_user_id_key), 0);
+            String password = mPref.getString(getString(R.string.settings_password_key), null);
+            return new ResUserGetLocationLoader(LoginActivity.this, url, databasename, userId, password);
+        }
+
+        @Override
+        public void onLoadFinished(Loader<List<Double>> loader, List<Double> location) {
+            if(location != null) {
+                if (location.size() == 2) {
+                    mPrefEditor.putFloat(getString(R.string.settings_user_lat_key), location.get(0).floatValue());
+                    mPrefEditor.putFloat(getString(R.string.settings_user_lon_key), location.get(1).floatValue());
+                } else {
+                    mPrefEditor.putFloat(getString(R.string.settings_user_lat_key), 255);
+                    mPrefEditor.putFloat(getString(R.string.settings_user_lon_key), 255);
+                }
+                mPrefEditor.commit();
+            }
+
+            // Transfer intent to main activity
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        @Override
+        public void onLoaderReset(Loader<List<Double>> loader) {
         }
     };
 

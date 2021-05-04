@@ -34,6 +34,8 @@
     <string name="settings_database_name__key" translatable="false">database_name</string>
     <string name="settings_is_login_key" translatable="false">is_logged_in</string>
     <string name="settings_user_id_key" translatable="false">user_id</string>
+    <string name="settings_user_lat_key" translatable="false">user_lat</string>
+    <string name="settings_user_lon_key" translatable="false">user_lon</string>
     <string name="cancel_string">Cancel</string>
     <string name="confirm_string">Confirm</string>
     <string name="yes_string">Yes</string>
@@ -246,4 +248,16 @@
     <string name="attendance_scan_title">Employee Badge Scan</string>
     <string name="scan_failed">Failed!!!</string>
     <string name="scan_success">Success</string>
+    <string name="error_service_disabled_title">Service Disabled</string>
+    <string name="error_service_disabled_body">Location service is currently disabled. You must activate location service to use attendance scanner.</string>
+    <string name="error_location_title">Location Error</string>
+    <string name="error_location_body1">Can not get current location. Please move to more open space and try again.</string>
+    <string name="error_location_body2">Can not get allowed location data from server. Please try to restart the app or contact system administrator if you have tried restarting.</string>
+    <string name="error_location_body3">Can not get allowed location data from preferences. Please try to restart the app or contact system administrator if you have tried restarting.</string>
+    <string name="error_invalid_data_title">Invalid Data</string>
+    <string name="error_invalid_data_body">Coordinate data not valid. Contact system administrator with this error message.</string>
+    <string name="error_not_allowed_title">Not Allowed</string>
+    <string name="error_not_allowed_body">Attendance scan is not allowed from current location. Contact system administrator with this error message.</string>
+    <string name="error_mock_provider_title">Warning!!</string>
+    <string name="error_mock_provider_body">You are using a mock provider. Turn it off to use attendance scanner truthfully.</string>
 </resources>

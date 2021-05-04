@@ -41,6 +41,7 @@ public class ProductTemplate {
     public int getId() { return mId; }
     public String getRef() { return mRef; }
     public String getName() { return mName; }
+    public String getPathName() { return mName.replace("\"", ""); }
     public double getQty() { return mQty; }
     public double getQtyForecast() { return mQtyForecast; }
     private void setProductCategory(GenericModel category) { mCategory = category; }

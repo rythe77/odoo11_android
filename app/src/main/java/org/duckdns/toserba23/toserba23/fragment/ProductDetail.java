@@ -319,7 +319,7 @@ public class ProductDetail extends AppCompatActivity {
                             String imgStr64 = mProductTemplate.getImage();
                             byte[] decodedImg = Base64.decode(imgStr64);
                             Bitmap decodedByteImg = BitmapFactory.decodeByteArray(decodedImg, 0, decodedImg.length);
-                            File imageFile = saveImage(decodedByteImg, mProductTemplate.getName());
+                            File imageFile = saveImage(decodedByteImg, mProductTemplate.getPathName());
                             Uri imgUri = Uri.parse(imageFile.getAbsolutePath());
                             WAIntent.putExtra(Intent.EXTRA_STREAM, imgUri);
                             WAIntent.setType("image/png");

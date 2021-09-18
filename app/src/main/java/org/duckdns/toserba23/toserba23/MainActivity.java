@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity
                 }
                 break;
             case R.id.attendance:
-                if (mAccess != null & mAccess.has_access_to_badge_scan) {
+                if (mAccess != null & mAccess.has_access_to_attendance) {
                     fragment = new Attendance();
                 } else {
                     Toast.makeText(MainActivity.this, R.string.no_access_right_error, Toast.LENGTH_LONG).show();

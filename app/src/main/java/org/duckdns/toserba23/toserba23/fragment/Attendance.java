@@ -77,9 +77,13 @@ public class Attendance extends Fragment{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //open scanner activity
-                Intent intent = new Intent(getActivity(), AttendanceScanner.class);
-                getActivity().startActivity(intent);
+                if (mAccess != null & mAccess.has_access_to_badge_scan) {
+                    //open scanner activity
+                    Intent intent = new Intent(getActivity(), AttendanceScanner.class);
+                    getActivity().startActivity(intent);
+                } else {
+                    Toast.makeText(getActivity(), R.string.no_access_right_error, Toast.LENGTH_LONG).show();
+                }
             }
         });
 

@@ -98,6 +98,28 @@ public class QueryUtilsStockPicking {
     }
 
     /**
+     * Do transfer for single stock picking at Odoo server.
+     **/
+    public static List<Integer> donePicking(String requestUrl, String databaseName, int userId, String password, int id) {
+        // Create URL object
+        ArrayList<URL> url = createUrl(requestUrl);
+
+        List<Integer> createdIds = new ArrayList<>();
+
+        // Confirm sale.order
+        try {
+            String jsonResponse = QueryUtils.makeXmlRpcRequest(url.get(2), "execute_kw", new Object[] {databaseName, userId, password, QueryUtils.STOCK_PICKING, "action_transfer", Arrays.asList(id)});
+            // add success flag as createdIds item
+            if (Boolean.parseBoolean(jsonResponse)) { createdIds.add(1);
+            } else { createdIds.add(0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return createdIds;
+    }
+
+    /**
      * Validate single stock picking at Odoo server.
      **/
     public static List<Integer> validatePicking(String requestUrl, String databaseName, int userId, String password, int id) {

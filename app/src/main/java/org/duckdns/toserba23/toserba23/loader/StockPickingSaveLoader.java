@@ -25,19 +25,19 @@ public class StockPickingSaveLoader extends AsyncTaskLoader<List<Integer>> {
     private int mUserId;
     private String mPassword;
     private int mItemId;
-    private Boolean mValidatePicking = false;
+    private String mCurrentStatus;
 
     /**
      * Constructor used to perform STOCK PICKING VALIDATION to server
      */
-    public StockPickingSaveLoader(Context context, String url, String databaseName, int userId, String password, int ItemId) {
+    public StockPickingSaveLoader(Context context, String url, String databaseName, int userId, String password, int ItemId, String currentStatus) {
         super(context);
         mUrl = url;
         mDatabaseName = databaseName;
         mUserId = userId;
         mPassword = password;
         mItemId = ItemId;
-        mValidatePicking = true;
+        mCurrentStatus = currentStatus;
     }
 
     @Override
@@ -55,8 +55,10 @@ public class StockPickingSaveLoader extends AsyncTaskLoader<List<Integer>> {
         }
 
         List<Integer> createdIds = new ArrayList<>();
-        if ( mValidatePicking) {
+        if ( mCurrentStatus.equals("waiting_validation")) {
             createdIds = QueryUtilsStockPicking.validatePicking(mUrl, mDatabaseName, mUserId, mPassword, mItemId);
+        } else if ( mCurrentStatus.equals("assigned")) {
+            createdIds = QueryUtilsStockPicking.donePicking(mUrl, mDatabaseName, mUserId, mPassword, mItemId);
         } else {
             createdIds.add(0);
         }

@@ -19,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.duckdns.toserba23.toserba23.R;
-import org.duckdns.toserba23.toserba23.loader.SaleOrderSaveLoader;
 import org.duckdns.toserba23.toserba23.loader.StockPickingDetailLoader;
 import org.duckdns.toserba23.toserba23.loader.StockPickingSaveLoader;
 import org.duckdns.toserba23.toserba23.model.AccessRight;
@@ -80,8 +79,8 @@ public class StockDetail extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mAccess != null & mAccess.has_access_to_stock_validate) {
-                    if (mStockPicking.getState().equals("waiting_validation")) {
+                if (mStockPicking.getState().equals("waiting_validation")) {
+                    if (mAccess != null & mAccess.has_access_to_stock_validate) {
                         // Verify whether user really wants to validate picking
                         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                             @Override
@@ -99,10 +98,31 @@ public class StockDetail extends AppCompatActivity {
                         builder.setMessage(getString(R.string.detail_stock_picking_validate_dialog)).setPositiveButton(getString(R.string.yes_string), dialogClickListener)
                                 .setNegativeButton(R.string.no_string, dialogClickListener).show();
                     } else {
-                        Toast.makeText(StockDetail.this, getString(R.string.detail_stock_picking_validate_refuse), Toast.LENGTH_LONG).show();
+                        Toast.makeText(StockDetail.this, R.string.no_access_right_error, Toast.LENGTH_LONG).show();
+                    }
+                } else if (mStockPicking.getState().equals("assigned")) {
+                    if (mAccess != null & mAccess.has_access_to_stock_done_transfer) {
+                        // Verify whether user really wants to validate picking
+                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which) {
+                                    case DialogInterface.BUTTON_POSITIVE:
+                                        validatePicking();
+                                        break;
+                                    case DialogInterface.BUTTON_NEGATIVE:
+                                        break;
+                                }
+                            }
+                        };
+                        AlertDialog.Builder builder = new AlertDialog.Builder(StockDetail.this);
+                        builder.setMessage(getString(R.string.detail_stock_picking_validate_dialog)).setPositiveButton(getString(R.string.yes_string), dialogClickListener)
+                                .setNegativeButton(R.string.no_string, dialogClickListener).show();
+                    } else {
+                        Toast.makeText(StockDetail.this, R.string.no_access_right_error, Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(StockDetail.this, R.string.no_access_right_error, Toast.LENGTH_LONG).show();
+                    Toast.makeText(StockDetail.this, getString(R.string.detail_stock_picking_validate_refuse), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -242,7 +262,7 @@ public class StockDetail extends AppCompatActivity {
 
             // Start appropriate loader to "read" or "save" data to/from server.
             // Default to "read" data from server
-            return new StockPickingSaveLoader(StockDetail.this, mUrl, mDatabaseName, mUserId, mPassword, mPickingId);
+            return new StockPickingSaveLoader(StockDetail.this, mUrl, mDatabaseName, mUserId, mPassword, mPickingId, mStockPicking.getState());
         }
         @Override
         public void onLoadFinished(Loader<List<Integer>> loader, List<Integer> flagIntegers) {

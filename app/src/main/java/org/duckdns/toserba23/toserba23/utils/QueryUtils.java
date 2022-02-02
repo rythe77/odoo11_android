@@ -48,6 +48,9 @@ public final class QueryUtils {
     public static final String STOCK_MOVE = "stock.move";
     public static final String STOCK_BACKORDER_CONFIRMATION = "stock.backorder.confirmation";
     public static final String HR_EMPLOYEE = "hr.employee";
+    public static final String HR_HOLIDAYS = "hr.holidays";
+    public static final String HR_HOLIDAYS_STATUS = "hr.holidays.status";
+    public static final String MAIL_MESSAGE = "mail.message";
 
     private static final String LOG_TAG = Context.class.getName();
 

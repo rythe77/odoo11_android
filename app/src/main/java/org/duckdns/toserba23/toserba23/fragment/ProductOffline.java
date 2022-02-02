@@ -11,12 +11,11 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,7 +32,6 @@ import android.widget.Toast;
 import org.duckdns.toserba23.toserba23.R;
 import org.duckdns.toserba23.toserba23.adapter.ProductTemplateAdapter;
 import org.duckdns.toserba23.toserba23.loader.ProductTemplateDetailLoaderToDatabase;
-import org.duckdns.toserba23.toserba23.loader.ProductTemplateLoader;
 import org.duckdns.toserba23.toserba23.loader.ProductTemplateLoaderFromDatabase;
 import org.duckdns.toserba23.toserba23.loader.ProductTemplateLoaderToDatabase;
 import org.duckdns.toserba23.toserba23.model.ProductTemplate;
@@ -42,8 +40,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import static org.duckdns.toserba23.toserba23.data.DbHelper.LOG_TAG;
 
 /**
  * Created by ryanto on 24/02/18.

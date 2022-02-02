@@ -40,6 +40,10 @@
                 android:id="@+id/attendance"
                 android:icon="@drawable/ic_people"
                 android:title="@string/attendance_list_title" />
+            <item
+                android:id="@+id/leave"
+                android:icon="@drawable/ic_sunny"
+                android:title="@string/leave_list_title" />
         </menu>
     </item>
 

@@ -12,18 +12,19 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.duckdns.toserba23.toserba23.fragment.Attendance;
+import org.duckdns.toserba23.toserba23.fragment.Leave;
 import org.duckdns.toserba23.toserba23.fragment.Partner;
 import org.duckdns.toserba23.toserba23.fragment.Product;
 import org.duckdns.toserba23.toserba23.fragment.QRScanner;
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity
         mPassword = mPref.getString(getString(R.string.settings_password_key), null);
         View header=navigationView.getHeaderView(0);
         ((TextView)header.findViewById(R.id.email)).setText(mUsermail);
+        ((TextView)header.findViewById(R.id.database)).setText(mDatabaseName);
 
         // Get app version
         String versionName = BuildConfig.VERSION_NAME;
@@ -199,6 +201,13 @@ public class MainActivity extends AppCompatActivity
             case R.id.attendance:
                 if (mAccess != null & mAccess.has_access_to_attendance) {
                     fragment = new Attendance();
+                } else {
+                    Toast.makeText(MainActivity.this, R.string.no_access_right_error, Toast.LENGTH_LONG).show();
+                }
+                break;
+            case R.id.leave:
+                if (mAccess != null) {
+                    fragment = new Leave();
                 } else {
                     Toast.makeText(MainActivity.this, R.string.no_access_right_error, Toast.LENGTH_LONG).show();
                 }

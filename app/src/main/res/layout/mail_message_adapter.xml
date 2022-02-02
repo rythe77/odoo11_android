@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/inside_margin"
+    android:paddingBottom="@dimen/inside_margin"
+    android:background="@color/theme_primary_background"
+    >
+
+    <LinearLayout
+        android:id="@+id/message_row_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/default_4dp"
+        >
+        <TextView
+            android:id="@+id/mail_message_date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:fontFamily="@string/font_normal"
+            android:textColor="@color/body_text_3"
+            android:textSize="@dimen/text_size_small"
+            tools:text="28 Januari 2022 12:27:27"/>
+        <TextView
+            android:id="@+id/mail_message_from"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:fontFamily="@string/font_normal"
+            android:textColor="@color/body_text_1"
+            android:textSize="@dimen/text_size_medium"
+            tools:text="Administrator (Odoo) ry.the77@gmail.com"/>
+        <TextView
+            android:id="@+id/mail_message_body"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@string/font_normal"
+            android:textColor="@color/body_text_2"
+            android:textSize="@dimen/text_size_medium"
+            tools:text="KLINIK DAN RUMAH BERSALIN\nMITRA MADISING\nJL.pajjaiyang No.35 G. Daya Makassar No.085340399418\nSURAT KETERANGAN SAKIT/ISTIRAHAT\nNomor:142/KM3/ 1 /2022\nDokter Pemeriksa:Dr.Muhammad Ichsan Lakota\nSIP.503/300.1.11/DU/SIP-KES/DPM-PTSP/1X/2019"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layerType="software"
+        android:background="@drawable/line_section_separator" />
+</LinearLayout>

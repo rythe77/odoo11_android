@@ -42,7 +42,7 @@ public class HrEmployee {
     }
 
     /**
-     * hashmap of res partner fields
+     * hashmap of hr employee fields
      * should be used to limit returned fields when querying Odoo server
      * @return
      */

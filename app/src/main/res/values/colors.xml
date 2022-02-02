@@ -28,6 +28,7 @@
     <color name="divider">#BDBDBD</color>
     <color name="black_divider">#de000000</color>
     <color name="whatsapp_green">#4FCE5D</color>
+    <color name="button_red">#AD0000</color>
     <!-- Stock picking status color set -->
     <color name="state_draft">#0099CC</color>
     <color name="state_waiting">#AA66CC</color>

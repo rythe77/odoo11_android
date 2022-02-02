@@ -17,6 +17,7 @@
     <dimen name="outside_margin">16dp</dimen>
     <dimen name="inside_margin">8dp</dimen>
     <dimen name="item_margin">50dp</dimen>
+    <dimen name="button_width_margin">120dp</dimen>
     <!-- Product view width for each column -->
     <dimen name="qty_margin">58dp</dimen>
     <dimen name="virtual_available_margin">58dp</dimen>

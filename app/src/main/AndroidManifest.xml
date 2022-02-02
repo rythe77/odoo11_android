@@ -64,6 +64,11 @@
             android:label="@string/attendance_scan_title"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".fragment.LeaveDetail"
+            android:label="@string/detail_leave_detail_activity_label"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

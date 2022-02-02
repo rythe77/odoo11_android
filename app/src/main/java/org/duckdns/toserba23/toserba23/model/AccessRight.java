@@ -18,6 +18,8 @@ public class AccessRight implements Parcelable {
     private static final String GROUP_STOCK_MANAGER = "Persediaan / Manajer";
     private static final String GROUP_BASE_USER = "Karyawan / Karyawan";
     private static final String ALLOW_BADGE_SCAN = "Pembukaan Akses / Akses Pindai Lencana";
+    private static final String GROUP_HR_HOLIDAYS_USER = "Cuti / Petugas";
+    private static final String GROUP_HR_HOLIDAYS_MANAGER = "Cuti / Manajer";
 
 
     private ArrayList<String> mGroupList;
@@ -30,6 +32,8 @@ public class AccessRight implements Parcelable {
     private Boolean group_stock_manager = false;
     private Boolean group_base_user = false;
     private Boolean allow_badge_scan = false;
+    private Boolean group_hr_holidays_user = false;
+    private Boolean group_hr_holidays_manager = false;
 
     // Boolean value for access right check
     public Boolean has_access_to_product = false;
@@ -41,6 +45,8 @@ public class AccessRight implements Parcelable {
     public Boolean has_access_to_stock_validate = false;
     public Boolean has_access_to_attendance = false;
     public Boolean has_access_to_badge_scan = false;
+    public Boolean has_access_to_leave_approval = false;
+    public Boolean has_access_to_leave_validation = false;
 
     /**
      * Main constructor of this class
@@ -73,6 +79,12 @@ public class AccessRight implements Parcelable {
         if (mGroupList.contains(ALLOW_BADGE_SCAN) ) {
             allow_badge_scan = true;
         }
+        if (mGroupList.contains(GROUP_HR_HOLIDAYS_MANAGER) ) {
+            group_hr_holidays_manager = true;
+            group_hr_holidays_user = true;
+        } else if ( mGroupList.contains(GROUP_HR_HOLIDAYS_USER) ) {
+            group_hr_holidays_user = true;
+        }
         open_access_right();
     }
 
@@ -100,6 +112,12 @@ public class AccessRight implements Parcelable {
         if ( allow_badge_scan ) {
             has_access_to_badge_scan = true;
         }
+        if ( group_hr_holidays_user ) {
+            has_access_to_leave_approval = true;
+        }
+        if ( group_hr_holidays_manager ) {
+            has_access_to_leave_validation = true;
+        }
     }
 
     /**
@@ -121,6 +139,8 @@ public class AccessRight implements Parcelable {
         dest.writeValue(has_access_to_stock_validate);
         dest.writeValue(has_access_to_attendance);
         dest.writeValue(has_access_to_badge_scan);
+        dest.writeValue(has_access_to_leave_approval);
+        dest.writeValue(has_access_to_leave_validation);
     }
 
     public AccessRight(Parcel P) {
@@ -133,6 +153,8 @@ public class AccessRight implements Parcelable {
         has_access_to_stock_validate = (Boolean) P.readValue(null);
         has_access_to_attendance = (Boolean) P.readValue(null);
         has_access_to_badge_scan = (Boolean) P.readValue(null);
+        has_access_to_leave_approval = (Boolean) P.readValue(null);
+        has_access_to_leave_validation = (Boolean) P.readValue(null);
     }
 
     public static final Parcelable.Creator<AccessRight> CREATOR = new Parcelable.Creator<AccessRight>() {

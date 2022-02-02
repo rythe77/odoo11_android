@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    android:background="@color/base_document_background">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:title="@string/settings_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/inside_margin"
+        android:orientation="vertical"
+        android:background="@drawable/background_with_shadow"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_margin"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:textColor="@color/body_text_1"
+            android:textSize="@dimen/text_size_xlarge"
+            android:text="@string/detail_leave_options_edit_dialog_title"
+            tools:text="Menyunting Cuti"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layerType="software"
+            android:background="@drawable/line_section_separator" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/inside_margin"
+            android:orientation="horizontal"
+            android:background="@color/itemBackground"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:textColor="@color/body_text_2"
+                android:textSize="@dimen/text_size_medium"
+                android:text="@string/detail_leave_employee"
+                tools:text="Karyawan"/>
+            <TextView
+                android:id="@+id/detail_leave_edit_employee"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:padding="@dimen/inside_margin"
+                android:textColor="@color/body_text_1"
+                android:textSize="@dimen/text_size_large"
+                tools:text="Siti Nur Aisyah"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/inside_margin"
+            android:orientation="horizontal"
+            android:background="@color/itemBackground"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:textColor="@color/body_text_2"
+                android:textSize="@dimen/text_size_medium"
+                android:text="@string/detail_leave_name"
+                tools:text="Deskripsi"/>
+            <EditText
+                android:id="@+id/detail_leave_edit_name"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/item_margin"
+                android:padding="@dimen/inside_margin"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:textColor="@color/body_text_2"
+                android:textSize="@dimen/text_size_medium"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/inside_margin"
+            android:orientation="horizontal"
+            android:background="@color/itemBackground"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:textColor="@color/body_text_2"
+                android:textSize="@dimen/text_size_medium"
+                android:text="@string/detail_leave_holiday_status"
+                tools:text="Jenis Cuti"/>
+            <Spinner
+                android:id="@+id/detail_leave_edit_holiday_status"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/item_margin"
+                android:padding="@dimen/inside_margin"
+                android:textColor="@color/body_text_2"
+                android:textSize="@dimen/text_size_medium"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/inside_margin"
+            android:orientation="horizontal"
+            android:background="@color/itemBackground"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:textColor="@color/body_text_2"
+                android:textSize="@dimen/text_size_medium"
+                android:text="@string/detail_leave_date_from"
+                tools:text="Dari Tanggal"
+                />
+        </LinearLayout>
+
+        <DatePicker
+            android:id="@+id/detail_leave_edit_date_from_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:datePickerMode="spinner"
+            android:calendarViewShown="false"
+            android:layout_gravity="center"
+            />
+
+        <TimePicker
+            android:id="@+id/detail_leave_edit_date_from_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner"
+            android:layout_gravity="center"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/inside_margin"
+            android:orientation="horizontal"
+            android:background="@color/itemBackground"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:textColor="@color/body_text_2"
+                android:textSize="@dimen/text_size_medium"
+                android:text="@string/detail_leave_date_to"
+                tools:text="Sampai Tanggal"/>
+        </LinearLayout>
+
+        <DatePicker
+            android:id="@+id/detail_leave_edit_date_to_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:datePickerMode="spinner"
+            android:calendarViewShown="false"
+            android:layout_gravity="center"
+            />
+
+        <TimePicker
+            android:id="@+id/detail_leave_edit_date_to_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:id="@+id/detail_leave_save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_16dp"
+            android:background="@drawable/rounded_corner_red"
+            android:text="@string/detail_leave_options_edit_dialog_save_button"
+            android:textColor="@color/text_inverse"
+            />
+    </LinearLayout>
+</ScrollView>

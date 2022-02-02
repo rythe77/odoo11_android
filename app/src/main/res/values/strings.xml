@@ -240,11 +240,16 @@
     <string name="detail_stock_picking_validate_failed">Failed at validating the stock picking</string>
 
     <!-- Attendance activity -->
+    <string name="leave_menu_options_all">All</string>
+    <string name="leave_menu_options_confirm">To Approve</string>
+    <string name="leave_menu_options_validate">Second Approval</string>
     <string name="punching_attendance_success">Attendance record success</string>
     <string name="employee_multiple_scan_results">Multiple employee with the qr code found. Contact your system administrator for details.</string>
     <string name="error_employee_not_found">Employee Not Found</string>
     <string name="error_failed_punching_attendance">!!! Attendance record failed !!!</string>
+    <string name="error_leaves_not_found">Leaves Not Found</string>
     <string name="attendance_list_title">Employee Attendance</string>
+    <string name="leave_list_title">Leaves</string>
     <string name="attendance_scan_title">Employee Badge Scan</string>
     <string name="scan_failed">Failed!!!</string>
     <string name="scan_success">Success</string>
@@ -260,4 +265,23 @@
     <string name="error_not_allowed_body">Attendance scan is not allowed from current location. Contact system administrator with this error message.</string>
     <string name="error_mock_provider_title">Warning!!</string>
     <string name="error_mock_provider_body">You are using a mock provider. Turn it off to use attendance scanner truthfully.</string>
+    <string name="detail_leave_detail_activity_label">Leave Detail</string>
+    <string name="detail_leave_date_from">Date From</string>
+    <string name="detail_leave_date_to">Date To</string>
+    <string name="detail_leave_employee">Employee</string>
+    <string name="detail_leave_status">Status</string>
+    <string name="detail_leave_name">Description</string>
+    <string name="detail_leave_note">Note</string>
+    <string name="detail_leave_holiday_status">Leave Type</string>
+    <string name="detail_leave_edit_button">Edit</string>
+    <string name="detail_leave_log_note_button">Log Note</string>
+    <string name="detail_leave_confirm_dialog">Are you sure you want to confirm this leave?</string>
+    <string name="detail_leave_confirm_refuse">This leave is not waiting confirmation!</string>
+    <string name="detail_leave_confirm_success">Successfully confirmed the leave</string>
+    <string name="detail_leave_confirm_failed">Failed at confirming the leave</string>
+    <string name="detail_leave_options_edit_dialog_title">Editing Leave</string>
+    <string name="detail_leave_options_edit_dialog_save_button">Save</string>
+    <string name="detail_leave_edit_refuse">This leave can not be edited!</string>
+    <string name="detail_leave_edit_name_empty">Description can not be empty!</string>
+    <string name="mail_message_create_dialog_title">Create new note</string>
 </resources>

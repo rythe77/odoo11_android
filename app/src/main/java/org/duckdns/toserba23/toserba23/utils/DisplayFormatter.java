@@ -7,6 +7,8 @@ package org.duckdns.toserba23.toserba23.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.widget.DatePicker;
+import android.widget.TimePicker;
 
 //import org.duckdns.toserba23.toserba23.R;
 
@@ -15,6 +17,7 @@ import org.duckdns.toserba23.toserba23.R;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -56,20 +59,8 @@ public final class DisplayFormatter {
             return "";
         }
     }
-    public static Date parseDate(String dateString) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd LLL yyyy");
-        Date date = null;
-        if (dateString!="false") {
-            try {
-                date = sdf.parse(dateString);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-        return date;
-    }
     public static String formatDateTime(String dateString) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
         Date date = null;
         if (dateString!="false") {
@@ -80,11 +71,37 @@ public final class DisplayFormatter {
             }
         }
         if (date!=null) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd LLL yyyy kk:mm");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd LLL yyyy HH:mm");
             return dateFormat.format(date);
         } else {
             return "";
         }
+    }
+    public static Date parseDate(String dateString) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+        Date date = null;
+        if (dateString!="false") {
+            try {
+                date = sdf.parse(dateString);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return date;
+    }
+    public static Date parseDateTime(String dateString) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+        Date date = null;
+        if (dateString!="false") {
+            try {
+                date = sdf.parse(dateString);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return date;
     }
     public static int getYear(Date dateObject) {
         if (dateObject!=null) {
@@ -109,6 +126,22 @@ public final class DisplayFormatter {
         } else {
             return 0;
         }
+    }
+    public static String getDateTimeFromPicker(DatePicker datePicker, TimePicker timePicker) {
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth();
+        int year =  datePicker.getYear();
+        int hour = timePicker.getCurrentHour();
+        int minute = timePicker.getCurrentMinute();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day, hour, minute, 0);
+
+        Date tes = calendar.getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+
+        return sdf.format(calendar.getTime());
     }
 
     /**

@@ -11,9 +11,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.telephony.PhoneNumberUtils;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -27,9 +27,6 @@ import org.duckdns.toserba23.toserba23.model.ResPartner;
 import org.duckdns.toserba23.toserba23.utils.AppUtils;
 import org.duckdns.toserba23.toserba23.utils.DisplayFormatter;
 import org.duckdns.toserba23.toserba23.utils.QueryUtilsAccessRight;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ryanto on 24/02/18.

@@ -1,14 +1,11 @@
 package org.duckdns.toserba23.toserba23.fragment;
 
 import android.app.LoaderManager;
-import android.content.Context;
 import android.content.Loader;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -16,14 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.duckdns.toserba23.toserba23.R;
-import org.duckdns.toserba23.toserba23.loader.ProductTemplateDetailLoader;
 import org.duckdns.toserba23.toserba23.loader.ProductTemplateDetailLoaderFromDatabase;
 import org.duckdns.toserba23.toserba23.model.ProductPricelistItem;
-import org.duckdns.toserba23.toserba23.model.ProductTemplate;
 import org.duckdns.toserba23.toserba23.utils.DisplayFormatter;
-import org.duckdns.toserba23.toserba23.utils.QueryUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

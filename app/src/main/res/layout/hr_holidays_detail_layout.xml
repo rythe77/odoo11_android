@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    >
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            android:background="@color/base_document_background">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/inside_margin"
+                android:layout_marginBottom="@dimen/inside_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/default_8dp"
+                        android:layout_marginBottom="@dimen/default_8dp"
+                        android:background="@drawable/background_with_shadow" >
+
+                        <TextView
+                            android:id="@+id/detail_holiday_status"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/default_8dp"
+                            android:fontFamily="@string/font_normal"
+                            android:textColor="@color/body_text_1"
+                            android:textStyle="bold"
+                            android:gravity="center_horizontal"
+                            android:textSize="@dimen/text_size_large"
+                            tools:text="Sakit" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingBottom="@dimen/default_4dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="@dimen/default_4dp"
+                                    android:fontFamily="@string/font_normal"
+                                    android:textColor="@color/body_text_3"
+                                    android:gravity="left"
+                                    android:textSize="@dimen/text_size_small"
+                                    android:text="@string/detail_leave_date_from"
+                                    tools:text="Dari Tanggal" />
+
+                                <TextView
+                                    android:id="@+id/detail_date_from"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@string/font_normal"
+                                    android:textColor="@color/body_text_1"
+                                    android:gravity="left"
+                                    android:textSize="@dimen/text_size_medium"
+                                    tools:text="17 Januari 2022 08:00" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="@dimen/default_4dp"
+                                    android:fontFamily="@string/font_normal"
+                                    android:textColor="@color/body_text_3"
+                                    android:gravity="right"
+                                    android:textSize="@dimen/text_size_small"
+                                    android:text="@string/detail_leave_date_to"
+                                    tools:text="Sampai Tanggal" />
+
+                                <TextView
+                                    android:id="@+id/detail_date_to"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@string/font_normal"
+                                    android:textColor="@color/body_text_2"
+                                    android:gravity="right"
+                                    android:textSize="@dimen/text_size_medium"
+                                    tools:text="17 Januari 2022 17:30" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingBottom="@dimen/default_4dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="@dimen/default_4dp"
+                                    android:fontFamily="@string/font_normal"
+                                    android:textColor="@color/body_text_3"
+                                    android:gravity="left"
+                                    android:textSize="@dimen/text_size_small"
+                                    android:text="@string/detail_leave_employee"
+                                    tools:text="Karyawan"/>
+
+                                <TextView
+                                    android:id="@+id/detail_employee"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@string/font_normal"
+                                    android:textColor="@color/body_text_1"
+                                    android:gravity="left"
+                                    android:textSize="@dimen/text_size_medium"
+                                    tools:text="Siti Nur Aisyah" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="@dimen/default_4dp"
+                                    android:fontFamily="@string/font_normal"
+                                    android:textColor="@color/body_text_3"
+                                    android:gravity="right"
+                                    android:textSize="@dimen/text_size_small"
+                                    android:text="@string/detail_leave_status"
+                                    tools:text="Status"/>
+
+                                <TextView
+                                    android:id="@+id/detail_status"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@string/font_normal"
+                                    android:textColor="@color/body_text_2"
+                                    android:gravity="right"
+                                    android:textSize="@dimen/text_size_medium"
+                                    tools:text="Akan Disetujui"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingBottom="@dimen/default_4dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                >
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="@dimen/default_4dp"
+                                    android:fontFamily="@string/font_normal"
+                                    android:textColor="@color/body_text_3"
+                                    android:gravity="left"
+                                    android:textSize="@dimen/text_size_small"
+                                    android:text="@string/detail_leave_name"
+                                    tools:text="Deskripsi"/>
+
+                                <TextView
+                                    android:id="@+id/detail_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@string/font_normal"
+                                    android:textColor="@color/body_text_1"
+                                    android:gravity="left"
+                                    android:textSize="@dimen/text_size_medium"
+                                    tools:text="Sakit. Demam. Faskes resmi" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_horizontal"
+                        android:paddingBottom="@dimen/default_4dp">
+
+                        <TextView
+                            android:id="@+id/edit_button"
+                            android:layout_width="@dimen/button_width_margin"
+                            android:layout_height="@dimen/item_margin"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/default_4dp"
+                            android:padding="@dimen/default_8dp"
+                            android:gravity="center"
+                            android:background="@drawable/rounded_corner_red"
+                            android:drawableLeft="@drawable/ic_edit_button"
+                            android:text="@string/detail_leave_edit_button"
+                            android:textColor="@color/text_inverse"
+                            />
+                        <TextView
+                            android:id="@+id/log_note_button"
+                            android:layout_width="@dimen/button_width_margin"
+                            android:layout_height="@dimen/item_margin"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/default_4dp"
+                            android:padding="@dimen/default_8dp"
+                            android:gravity="center"
+                            android:background="@drawable/rounded_corner_red"
+                            android:drawableLeft="@drawable/ic_note_add"
+                            android:text="@string/detail_leave_log_note_button"
+                            android:textColor="@color/text_inverse"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/default_8dp"
+                        android:layout_marginBottom="@dimen/default_8dp"
+                        android:background="@drawable/background_with_shadow" >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/default_8dp"
+                            android:fontFamily="@string/font_normal"
+                            android:textColor="@color/body_text_1"
+                            android:textStyle="bold"
+                            android:gravity="center_horizontal"
+                            android:textSize="@dimen/text_size_medium"
+                            android:text="@string/detail_leave_note"/>
+                        <LinearLayout
+                            android:id="@+id/container_view"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </LinearLayout>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:tools="http://schemas.android.com/tools"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/inside_margin"
+                            android:paddingBottom="@dimen/inside_margin"
+                            android:background="@color/theme_primary_background"
+                            >
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Empty view is only visible when the list has no items. -->
+                <TextView
+                    android:id="@+id/empty_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:visibility="gone"
+                    android:background="@color/theme_primary_background"/>
+
+                <RelativeLayout
+                    android:id="@+id/loading_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/theme_primary_background"
+                    android:visibility="gone" >
+                    <ProgressBar
+                        style="@style/Widget.AppCompat.ProgressBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </ScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</RelativeLayout>

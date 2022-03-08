@@ -89,7 +89,17 @@ public class AttendanceScanner extends AppCompatActivity implements ZXingScanner
         super.onResume();
         // Register ourselves as a handler for scan results.
         mScannerView.setResultHandler(this);
-        checkLocationPermission();
+
+        // Bypass location check if user lat-long is both 0.
+        float userLat = mPref.getFloat(getString(R.string.settings_user_lat_key), 256);
+        float userLon = mPref.getFloat(getString(R.string.settings_user_lon_key), 256);
+        if (userLat == 0 & userLon == 0) {
+            // Activate qr code scanner
+            setContentView(mScannerView);
+            mScannerView.startCamera();
+        } else {
+            checkLocationPermission();
+        }
     }
 
     @Override

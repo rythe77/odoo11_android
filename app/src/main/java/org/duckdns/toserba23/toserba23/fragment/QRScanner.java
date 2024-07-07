@@ -88,7 +88,7 @@ public class QRScanner extends Fragment implements ZXingScannerView.ResultHandle
     @Override
     public void handleResult(Result rawResult) {
         mProductTemplateFilterElements.clear();
-        mProductTemplateFilterElements.add(new Object[] {"default_code", "ilike", rawResult.getText().toString()});
+        mProductTemplateFilterElements.add(new Object[] {"default_code", "=like", rawResult.getText().toString()});
         getLoaderManager().restartLoader(FETCH_PRODUCT_TEMPLATE_LOADER_ID, null, loadProductTemplateFromServerListener);
     }
 

@@ -12,6 +12,9 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -178,13 +181,13 @@ public class ProductDetail extends AppCompatActivity {
             if (imgStr64 != "false") {
                 byte[] decodedImg = Base64.decode(imgStr64);
                 Bitmap decodedByteImg = BitmapFactory.decodeByteArray(decodedImg, 0, decodedImg.length);
-                saveImage(decodedByteImg, mProductTemplate.getName());
+                saveImage(decodedByteImg, mProductTemplate.getPathName(), true);
             }
         }
         return true;
     }
 
-    private File saveImage(Bitmap finalBitmap, String image_name) {
+    private File saveImage(Bitmap image, String image_name, Boolean isWhiteBG) {
         // Ask for external storage permission
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED)
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_REQUEST_CODE);
@@ -192,12 +195,26 @@ public class ProductDetail extends AppCompatActivity {
         String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
         File myDir = new File(root);
         if (!myDir.exists()) myDir.mkdirs();
-        String fname = "Image_" + image_name.replace("/", "_") + ".jpg";
+        String fname = "Image_" + image_name.replace("/", "_") + ".png";
         File file = new File(myDir, fname);
         if (file.exists()) file.delete();
+
+        // Create background color for product image
+        Bitmap finalBitmap = Bitmap.createBitmap(image.getWidth(), image.getHeight(),image.getConfig());
+        Canvas canvas = new Canvas(finalBitmap);
+        if (isWhiteBG) {
+            canvas.drawColor(Color.WHITE);
+        } else {
+            canvas.drawColor(Color.BLACK);
+        }
+        Rect dest = new Rect(0, 0, image.getWidth(), image.getHeight());
+        Rect src = new Rect(0, 0, image.getWidth(), image.getHeight());
+        canvas.drawBitmap(image, src, dest, null);
+
         try {
             FileOutputStream out = new FileOutputStream(file);
-            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            finalBitmap.setHasAlpha(true);
+            finalBitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
             out.flush();
             out.close();
         } catch (Exception e) {
@@ -277,9 +294,14 @@ public class ProductDetail extends AppCompatActivity {
     private void send_whatsapp_dialog() {
         final ArrayList selectedItems = new ArrayList();
         AlertDialog.Builder builder = new AlertDialog.Builder(ProductDetail.this);
-        String[] choice_array = new String[] {getString(R.string.detail_product_description_string), getString(R.string.detail_product_image_string)};
+        String[] choice_array = new String[] {
+                getString(R.string.detail_product_description_string),
+                getString(R.string.detail_product_image_string),
+                getString(R.string.detail_product_background_string)};
+        boolean[] checkedItems = new boolean[choice_array.length];
+        Arrays.fill(checkedItems, true);
         builder.setTitle(getString(R.string.detail_product_send_wa_dialog_title))
-                .setMultiChoiceItems(choice_array, null, new DialogInterface.OnMultiChoiceClickListener() {
+                .setMultiChoiceItems(choice_array, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i, boolean isChecked) {
                         if (isChecked) {
@@ -306,16 +328,18 @@ public class ProductDetail extends AppCompatActivity {
                             name = mProductTemplate.getName();
                         }
                         String description = "";
-                        if (selectedItems.contains(0) && mProductTemplate!=null && !mProductTemplate.getDescription().isEmpty() && mProductTemplate.getDescription() != "false") {
+                        if (checkedItems[0] && mProductTemplate!=null && !mProductTemplate.getDescription().isEmpty() && mProductTemplate.getDescription() != "false") {
                             description = "\n\n" + mProductTemplate.getDescription();
                         }
                         String message = name + description;
                         WAIntent.putExtra(Intent.EXTRA_TEXT, message);
-                        if (selectedItems.contains(1) && mProductTemplate!=null && !mProductTemplate.getImage().isEmpty() && mProductTemplate.getImage() != "false") {
+                        if (checkedItems[1] && mProductTemplate!=null && !mProductTemplate.getImage().isEmpty() && mProductTemplate.getImage() != "false") {
                             String imgStr64 = mProductTemplate.getImage();
                             byte[] decodedImg = Base64.decode(imgStr64);
                             Bitmap decodedByteImg = BitmapFactory.decodeByteArray(decodedImg, 0, decodedImg.length);
-                            File imageFile = saveImage(decodedByteImg, mProductTemplate.getPathName());
+                            Boolean whiteBG = false;
+                            if (checkedItems[2]) whiteBG = true;
+                            File imageFile = saveImage(decodedByteImg, mProductTemplate.getPathName(), whiteBG);
                             Uri imgUri = Uri.parse(imageFile.getAbsolutePath());
                             WAIntent.putExtra(Intent.EXTRA_STREAM, imgUri);
                             WAIntent.setType("image/png");

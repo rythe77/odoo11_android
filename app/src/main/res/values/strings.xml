@@ -152,6 +152,7 @@
     <string name="detail_product_send_wa_dialog_title">Choose additional info to send</string>
     <string name="detail_product_description_string">Description</string>
     <string name="detail_product_image_string">Image</string>
+    <string name="detail_product_background_string">White Background</string>
 
     <!-- QR Scanner activity -->
     <string name="qr_scan_title">Product QR Scan</string>

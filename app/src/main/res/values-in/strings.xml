@@ -228,4 +228,5 @@
     <string name="detail_leave_edit_refuse">Cuti ini tidak dapat diedit</string>
     <string name="detail_leave_edit_name_empty">Kolom deskripsi tidak boleh kosong!</string>
     <string name="mail_message_create_dialog_title">Buat catatan baru</string>
+    <string name="detail_product_background_string">Latar Putih</string>
 </resources>
